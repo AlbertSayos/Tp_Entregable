@@ -108,5 +108,8 @@ public class Mapa{
 
 	}
 
-
+	
+	public void removerMaterialDelMapa(Posicion unaPosicion) {
+		this.terreno.remove(unaPosicion);
+	}
 }

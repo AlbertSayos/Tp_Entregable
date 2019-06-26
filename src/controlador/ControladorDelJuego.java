@@ -5,10 +5,12 @@ import javafx.scene.layout.*;
 import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import modelo.juego.Juego;
 import modelo.posicion.Posicion;
 import vista.JuegoVista;
 import modelo.materiales.*;
+import controlador.*;
 
 
 public class ControladorDelJuego {
@@ -172,6 +174,12 @@ public class ControladorDelJuego {
             }
         }
         return null;
+    }
+    
+    public void golpearMaterial(GridPane mapa, MouseEvent event){
+
+        //System.out.println(nodoSeleccionado.getLayoutX());
+        //System.out.println(nodoSeleccionado.getLayoutY());
     }
     
 

@@ -1,5 +1,6 @@
 package modelo.materiales;
 
+import modelo.excepciones.MaterialRotoException;
 import modelo.herramientas.Golpe;
 import modelo.herramientas.Hacha;
 import modelo.herramientas.Herramienta;
@@ -17,6 +18,7 @@ public class Madera extends Material{
 	public void recibeGolpeDe(Herramienta unaHerramienta) {
 
 		unaHerramienta.golpear(this);
+		if(this.estaDestruido()) throw new MaterialRotoException();
 
 	}
 

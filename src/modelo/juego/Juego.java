@@ -1,6 +1,7 @@
 package modelo.juego;
 
 import modelo.jugador.*;
+import modelo.excepciones.*;
 import modelo.mapas.Mapa;
 import modelo.materiales.*;
 import modelo.posicion.Posicion;
@@ -107,6 +108,25 @@ public class Juego {
 
         return this.mapa;
 
+    }
+    
+    public boolean jugadorGolpeaEnPosicion(int x, int y) {
+    	Posicion posicion = new Posicion(x,y);
+    	
+    	Material materialObtenido = this.mapa.obtenerObjeto(posicion);
+    	if(materialObtenido == null) return false;
+    	
+    	try{
+    		this.jugador.golpearMaterial(materialObtenido, posicion);
+    	} 
+    	catch (GolpeFueraDeRangoException ex) {
+    		return false;
+    	}
+    	catch(MaterialRotoException ex) {
+    		this.mapa.removerMaterialDelMapa(posicion);
+    		return true;
+    	}
+    	return false;
     }
 
 

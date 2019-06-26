@@ -7,6 +7,7 @@ import org.junit.Test;
 import junit.framework.Assert;
 import modelo.herramientas.*;
 import modelo.mapas.*;
+import modelo.materiales.*;
 import modelo.posicion.*;
 
 public class JugadorTest {
@@ -43,5 +44,20 @@ public class JugadorTest {
 		Assert.assertTrue(movs.moverJugadorAbajo(mapa));
 	}
 
-	
+	@Test
+    public void jugadorGolpeaMaterial() {
+        Jugador jugador = new Jugador();
+        Material material= new Madera();
+        Mapa mapa = new Mapa();
+
+        Posicion posicion = new Posicion(1,1);
+        Posicion posicion2 = new Posicion(0,1);
+        mapa.posicionarJugador(jugador, posicion);
+        mapa.posicionarMaterial(material, posicion2);
+
+        jugador.golpearMaterial(material, posicion2);
+
+
+        Assert.assertTrue(true);
+    }
 }

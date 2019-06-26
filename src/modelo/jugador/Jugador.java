@@ -2,10 +2,7 @@ package modelo.jugador;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import modelo.constructores.MesaDeCrafteo;
-import modelo.excepciones.HerramientaNoSeleccionadaException;
-import modelo.excepciones.HerramientaRotaException;
-import modelo.excepciones.JugarSinHerramientaEquipadaException;
-import modelo.excepciones.MaterialRotoException;
+import modelo.excepciones.*;
 import modelo.materiales.*;
 import modelo.herramientas.*;
 import modelo.posicion.*;
@@ -58,7 +55,7 @@ public class Jugador {
     }
 
 
-	public Posicion moverDerecha() {
+	public Posicion miDerecha() {
 
 
 		//this.posicionActual = posicionActual.getPosicionDerecha();
@@ -67,10 +64,9 @@ public class Jugador {
 	}
 
 
-	public Posicion moverIzquierda() {
+	public Posicion miIzquierda() {
 
-		this.posicionActual = posicionActual.getPosicionIzquierda();
-		return this.posicionActual;
+		return this.posicionActual.getPosicionIzquierda();
 	}
 
 
@@ -94,17 +90,18 @@ public class Jugador {
     }
 
 
-	public void golpearMaterial(Material material) {
+	public void golpearMaterial(Material material, Posicion unaPosicion) {
+		if(!puedeGolpear(unaPosicion)) throw new GolpeFueraDeRangoException();
 		try {
 			if (this.herramientaEquipada == null) {
 				throw new JugarSinHerramientaEquipadaException();
 			}
-			this.herramientaEquipada.usarContra(material);
+			this.herramientaEquipada.usar(material);
 		} catch (MaterialRotoException ex) {
 			this.inventario.agregarMaterial(material);
-			throw ex;
-		} catch (HerramientaRotaException ex) {
-			this.herramientaEquipada = null;
+			if(this.herramientaEquipada.estaRota()) {
+				this.herramientaEquipada = null;
+			}
 			throw ex;
 		}
 	}
@@ -230,6 +227,16 @@ public class Jugador {
 	public double getDurabilidadHerramientaActual() {
 		return this.herramientaSeleccionada.getDurabilidad();
 	}
+	
+	public boolean puedeGolpear(Posicion posicion){
+        Posicion derecha, izquierda;
+
+        derecha = miDerecha();
+        izquierda = miIzquierda();
+
+        return posicion.equals(derecha) || posicion.equals(izquierda); 
+
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package modelo.materiales;
 
+import modelo.excepciones.MaterialRotoException;
 import modelo.herramientas.*;
 import modelo.posicion.*;
 
@@ -45,7 +46,8 @@ public abstract class Material{
     public abstract void golpear(Golpe golpe);
     
     public boolean estaDestruido() {
-    	return (this.durabilidad <= 0);
+    	if (durabilidad <= 0) throw new MaterialRotoException();
+    	return (durabilidad <=0);
     }
     
 }

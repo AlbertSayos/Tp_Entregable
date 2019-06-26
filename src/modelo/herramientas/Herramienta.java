@@ -1,11 +1,8 @@
 package modelo.herramientas;
 
 
-import modelo.materiales.Diamante;
-import modelo.materiales.Madera;
-import modelo.materiales.Material;
-import modelo.materiales.Metal;
-import modelo.materiales.Piedra;
+import modelo.excepciones.HerramientaRotaException;
+import modelo.materiales.*;
 
 
 public abstract class Herramienta {
@@ -56,8 +53,8 @@ public abstract class Herramienta {
 
     public abstract void usarContra(Material materialARecolectar);
     
-    public boolean estaDestruido() {
-    	return (this.durabilidad <= 0);
+    public boolean estaRota() {
+    	return (durabilidad <=0.0);
     }
     
     public abstract String getImagen();
