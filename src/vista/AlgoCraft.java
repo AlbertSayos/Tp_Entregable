@@ -24,6 +24,7 @@ public class AlgoCraft extends Application {
     public static double heigth;
     private Juego juego;
     /*private Group root;
+     * 
     private static PlayerView player;*/
 
 
