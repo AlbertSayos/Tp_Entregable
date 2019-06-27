@@ -1,7 +1,4 @@
 package modelo.jugador;
-import javafx.geometry.Pos;
-import javafx.scene.image.Image;
-import modelo.constructores.MesaDeCrafteo;
 import modelo.excepciones.*;
 import modelo.materiales.*;
 import modelo.herramientas.*;

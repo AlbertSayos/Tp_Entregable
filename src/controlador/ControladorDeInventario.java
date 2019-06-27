@@ -1,7 +1,6 @@
 package controlador;
 
 
-import modelo.constructores.MesaDeCrafteo;
 import modelo.herramientas.Herramienta;
 import modelo.jugador.Inventario;
 import modelo.materiales.*;
