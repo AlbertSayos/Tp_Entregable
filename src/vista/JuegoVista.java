@@ -21,7 +21,7 @@ public class JuegoVista {
         main = new BorderPane();
         this.mapa = new GridPane();
         mapa.setAlignment(Pos.CENTER);
-        this.mapa.setStyle("-fx-background-image: url('fondo.png')");
+        this.mapa.setStyle("-fx-background-image: url('pasto.png')");
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
         Boton btnInventario = new Boton("Inventario - [E]");
@@ -29,32 +29,11 @@ public class JuegoVista {
         btnInventario.setOnAction(e ->{escenario.mostrar("inventario"); this.controlador.actualizarInventario();});
         btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
-        menu.setStyle("-fx-background-image: url('fondo.png')");
-        // Botones para golpear
-        VBox flechasGolpear = new VBox();
-        flechasGolpear.setAlignment(Pos.BOTTOM_CENTER);
-        HBox flechasGolpearAbajo = new HBox();
-        Boton btnGolpearIzquierda = new Boton("◄");
-        Boton btnGolpearDerecha = new Boton("►");
-        Boton btnGolpearAbajo = new Boton("▼");
-        flechasGolpearAbajo.getChildren().addAll(btnGolpearIzquierda,btnGolpearAbajo,btnGolpearDerecha);
-        Boton btnGolpearArriba = new Boton("▲");
-        flechasGolpear.getChildren().addAll(btnGolpearArriba, flechasGolpearAbajo);
-        flechasGolpear.setStyle("-fx-background-image: url('fondo.png')");
-        main.setStyle("-fx-background-image: url('fondo.png')");
-        // Main game
+        menu.setStyle("-fx-background-image: url('pasto.png')");
+        main.setStyle("-fx-background-image: url('pasto.png')");
         main.setTop(menu);
         main.setCenter(mapa);
-        main.setRight(flechasGolpear);
         main.setBottom(selectorHerramientas);
-
-/*
-        btnGolpearIzquierda.setOnAction( e -> controlador.golpearIzquierda());
-        btnGolpearDerecha.setOnAction( e -> controlador.golpearDerecha());
-        btnGolpearAbajo.setOnAction( e -> controlador.golpearAbajo());
-        btnGolpearArriba.setOnAction( e -> controlador.golpearArriba());
-*/
-        // Teclado
         MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa);
         main.setOnKeyPressed(jugadorEventH);
         main.setOnKeyPressed(event -> {

@@ -65,7 +65,7 @@ public class Principal extends Application {
             escenario.set("creditos", creditosVista.getPane());
             comenzar.setOnAction(e -> { escenario.mostrar("juego"); });
             creditos.setOnAction(e -> { escenario.mostrar("creditos"); });
-            panel.setStyle("-fx-background-image: url('entrada.png')");
+            panel.setStyle("-fx-background-image: url('fondo.png')");
             salir.setOnAction(e -> { System.exit(0); });
             Juego juego = new Juego();
             Jugador jugador = juego.getJugador();

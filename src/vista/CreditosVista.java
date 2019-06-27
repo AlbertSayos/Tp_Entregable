@@ -17,18 +17,13 @@ public class CreditosVista {
     public CreditosVista(Escenario escenario) {
         this.escenario = escenario;
         pane = new BorderPane();
-
-        this.pane.setStyle("-fx-background-image: url('fondo.png')");
-
-        // Top
+        this.pane.setStyle("-fx-background-image: url('creditos.jpg')");
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         Text titulo = new Text("Creditos");
         titulo.setId("titulo");
         hBox.setId("titulo-hbox");
         hBox.getChildren().add(titulo);
-
-        // Center
         VBox contenedor = new VBox();
         contenedor.setAlignment(Pos.TOP_CENTER);
         ImageView logo = new ImageView(new Image("logoCreditos.png", 400, 0, true, true));
@@ -38,6 +33,7 @@ public class CreditosVista {
         VBox.setVgrow(r, Priority.ALWAYS);
         r.getChildren().add(logo);
         Text tituloCred = new Text("Integrantes del proyecto:");
+        tituloCred.setStyle("-fx-color:white;");
         Text vacio = new Text("");
         Text nombre1 = new Text("Ledesma, Dylan.");
         Text nombre2 = new Text("Albert");
@@ -49,20 +45,19 @@ public class CreditosVista {
         nombre2.setId("nombre");
         nombre3.setId("nombre");
         nombre4.setId("nombre");
+        nombre1.setStyle("-fx-color:white;");
+        nombre2.setStyle("-fx-color:white;");
+        nombre3.setStyle("-fx-color:white;");
+        nombre4.setStyle("-fx-color:white;");
         contenedor.getChildren().addAll(r, tituloCred,vacio, nombre1, nombre2, nombre3, nombre4);
         contenedor.setLayoutY(2000);
-
-        // Bottom
         HBox volver = new HBox();
         volver.setId("boton-volver");
         volver.setAlignment(Pos.CENTER);
         Button btnVolver = new Button();
         btnVolver.setGraphic(new Label("Volver"));
-        btnVolver.setOnAction(e -> {
-            escenario.mostrar("entrada");
-        });
+        btnVolver.setOnAction(e -> { escenario.mostrar("entrada"); });
         volver.getChildren().add(btnVolver);
-
         pane.setTop(hBox);
         pane.setCenter(contenedor);
         pane.setBottom(volver);

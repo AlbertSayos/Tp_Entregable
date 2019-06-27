@@ -50,18 +50,12 @@ public class InventarioVista {
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
         Boton cerrar = new Boton("Cerrar - [E]");
-        cerrar.setOnAction(e -> {
-            escenario.mostrar("juego");
-        });
+        cerrar.setOnAction(e -> { escenario.mostrar("juego"); });
         menu.getChildren().addAll(cerrar);
-
         root.setTop(menu);
         root.setCenter(contenedor);
-
         root.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.E) {
-                escenario.mostrar("juego");
-            }
+            if (event.getCode() == KeyCode.E) { escenario.mostrar("juego"); }
         });
         this.mesa = mesaDeCrafteo;
     }
@@ -124,16 +118,9 @@ public class InventarioVista {
         stack.getChildren().add(imageView);
         inventario.add(stack, fila, columna);
         stack.setId("casilla");
-        imageView.setOnMouseClicked(e -> {
-            System.out.println("IMAGEN");
-            //stack.getChildren().clear();
-            
-            //this.seleccionado = imageView;
-            this.seleccionado = e.getPickResult().getIntersectedNode();
-        });
+        imageView.setOnMouseClicked(e -> { this.seleccionado = e.getPickResult().getIntersectedNode(); });
         stack.setOnMouseReleased(e -> {
             if (this.seleccionado != null) {
-                System.out.println("PONGO");
                 stack.getChildren().clear();
                 stack.getChildren().add(this.seleccionado);
                 this.seleccionado = null;
