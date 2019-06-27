@@ -18,8 +18,7 @@ public class ClickMaterialJuegoEventHandler implements EventHandler<MouseEvent>{
 	
 	
 	@Override
-	public void handle(MouseEvent event) {
-
+	public void handle(MouseEvent event) {		
         this.juegoVista.controlador().golpearMaterial(mapa, event);
 		
 	}

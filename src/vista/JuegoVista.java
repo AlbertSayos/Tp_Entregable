@@ -81,28 +81,9 @@ public class JuegoVista {
         // Teclado
         MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa);
         main.setOnKeyPressed(jugadorEventH);
-        /*main.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.E) {
-                controladorDeEscena.activate("inventario");
-            }
-            if (event.getCode() == KeyCode.ESCAPE) {
-                controladorDeEscena.activate("main");
-            }
-            if (event.getCode() == KeyCode.W) {
-                controlador.moverArriba(mapa);
-            }
-            if (event.getCode() == KeyCode.A) {
-                controlador.moverIzquierda(mapa);
-            }
-            if (event.getCode() == KeyCode.S) {
-                controlador.moverAbajo(mapa);
-            }
-            if (event.getCode() == KeyCode.D) {
-                controlador.moverDerecha(mapa);
-            }
-            
-        });
-        */
+        
+        ClickMaterialJuegoEventHandler clickMaterialH = new ClickMaterialJuegoEventHandler(this, this.mapa);
+        mapa.setOnMouseClicked(clickMaterialH);
     }
 
 
