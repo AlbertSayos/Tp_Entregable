@@ -5,8 +5,10 @@ import javafx.scene.control.Label;
 
 public class Boton extends Button {
 
-    public Boton(String text) {
+    public Boton(String etiqueta) {
+
         super();
-        this.setGraphic(new Label(text));
+        this.setGraphic(new Label(etiqueta));
+
     }
 }

@@ -1,8 +1,7 @@
 package vista;
 
-import controlador.ControladorDeEscena;
+import controlador.Escenario;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -13,10 +12,10 @@ import javafx.scene.text.Text;
 public class CreditosVista {
 
     BorderPane pane;
-    ControladorDeEscena controladorDeEscena;
+    Escenario escenario;
 
-    public CreditosVista(ControladorDeEscena controladorDeEscena) {
-        this.controladorDeEscena = controladorDeEscena;
+    public CreditosVista(Escenario escenario) {
+        this.escenario = escenario;
         pane = new BorderPane();
         pane.setId("background");
 
@@ -59,7 +58,7 @@ public class CreditosVista {
         Button btnVolver = new Button();
         btnVolver.setGraphic(new Label("Volver"));
         btnVolver.setOnAction(e -> {
-            controladorDeEscena.activate("main");
+            escenario.mostrar("entrada");
         });
         volver.getChildren().add(btnVolver);
 

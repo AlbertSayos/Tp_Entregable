@@ -1,14 +1,9 @@
 package vista;
 
 import controlador.*;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 
 
@@ -20,7 +15,7 @@ public class JuegoVista {
     private BorderPane main;
 
 
-    public JuegoVista(ControladorDeEscena controladorDeEscena, SelectorDeHerramientas selectorHerramientas) {
+    public JuegoVista(Escenario escenario, SelectorDeHerramientas selectorHerramientas) {
         main = new BorderPane();
         main.setId("juego-escena");
 
@@ -34,8 +29,8 @@ public class JuegoVista {
         menu.setAlignment(Pos.CENTER);
         Boton btnInventario = new Boton("Inventario - [E]");
         Boton btnMenu = new Boton("Menu - [ESC]");
-        btnInventario.setOnAction(e -> controladorDeEscena.activate("inventario"));
-        btnMenu.setOnAction(e -> controladorDeEscena.activate("main"));
+        btnInventario.setOnAction(e -> escenario.mostrar("inventario"));
+        btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
 
         // Botones para moverse
@@ -83,10 +78,10 @@ public class JuegoVista {
         main.setOnKeyPressed(jugadorEventH);
         /*main.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.E) {
-                controladorDeEscena.activate("inventario");
+                escenario.activate("inventario");
             }
             if (event.getCode() == KeyCode.ESCAPE) {
-                controladorDeEscena.activate("main");
+                escenario.activate("main");
             }
             if (event.getCode() == KeyCode.W) {
                 controlador.moverArriba(mapa);

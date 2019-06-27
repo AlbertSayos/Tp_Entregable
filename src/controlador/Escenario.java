@@ -5,23 +5,24 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import java.util.HashMap;
 
-public class ControladorDeEscena {
+public class Escenario {
     private HashMap<String, Pane> escenas = new HashMap<>();
     private Scene main;
 
-    public ControladorDeEscena(Scene main) {
+
+    public Escenario(Scene main) {
         this.main = main;
     }
 
-    public void agregarEscena(String nombre, Pane pane){
+
+    public void set(String nombre, Pane pane){
         escenas.put(nombre, pane);
     }
 
-    public void eliminarEscena(String nombre){
-        escenas.remove(nombre);
-    }
 
-    public void activate(String nombre){
+    public void mostrar(String nombre){
         main.setRoot(escenas.get(nombre));
     }
+
+
 }

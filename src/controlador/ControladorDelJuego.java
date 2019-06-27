@@ -131,41 +131,6 @@ public class ControladorDelJuego {
     	
     }
 
-/*
-    public void golpearIzquierda() {
-        juego.getJugador().golpear(new HaciaIzquierda());
-        actualizarVista();
-        controladorDeInventario.actualizarVista();
-    }
-
-
-    public void golpearDerecha() {
-        juego.getJugador().golpear(new HaciaDerecha());
-        actualizarVista();
-        controladorDeInventario.actualizarVista();
-    }
-
-
-    public void golpearArriba() {
-        juego.getJugador().golpear(new HaciaArriba());
-        actualizarVista();
-        controladorDeInventario.actualizarVista();
-    }
-
-
-    public void golpearAbajo() {
-        juego.getJugador().golpear(new HaciaAbajo());
-        actualizarVista();
-        controladorDeInventario.actualizarVista();
-    }
-*/
-    public void limpiarPantalla(GridPane mapa){
-    	
-    	
-    	mapa.getChildren().removeAll(mapa.getChildren());
-    	//actualizarVista();
-    
-    }
     
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
@@ -174,12 +139,6 @@ public class ControladorDelJuego {
             }
         }
         return null;
-    }
-    
-    public void golpearMaterial(GridPane mapa, MouseEvent event){
-
-        //System.out.println(nodoSeleccionado.getLayoutX());
-        //System.out.println(nodoSeleccionado.getLayoutY());
     }
     
 
