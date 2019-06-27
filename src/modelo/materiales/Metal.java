@@ -11,7 +11,7 @@ public class Metal extends Material {
 	public Metal() {
 		this.durabilidad = 50;
 		this.identidad = "3";
-		this.imagen = "metal.png";
+	
 	}
 	
 
