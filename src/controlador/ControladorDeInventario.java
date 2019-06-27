@@ -40,7 +40,7 @@ public class ControladorDeInventario {
             if (i % 9 == 0) {
                 j++;
             }
-            inventarioVista.agregar(materialesHash.get(this.materiales.get(i).getIdentificador()), i % 9, j);
+            inventarioVista.agregar(materialesHash.get(this.materiales.get(i).getIdentificador())+".png", i % 9, j);
             System.out.println("Se agregaron los materiales al inventario vista");
         }
 
@@ -49,7 +49,7 @@ public class ControladorDeInventario {
         for (int i = 0; i < herramientas.size(); i++) {
             System.out.println("Agregando herramientas al selector");
             System.out.println("El identificador de la herramienta es: "+herramientas.get(i).getIdentificador());
-            this.selectorHerramientas.agregar(herramientas.get(i).getRutaImagen(), i);
+            //this.selectorHerramientas.agregar(herramientas.get(i).getRutaImagen(), i);
         }
         System.out.println("Saliendo de vista de controlador de inventario");
     }

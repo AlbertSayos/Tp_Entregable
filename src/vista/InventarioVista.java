@@ -1,6 +1,7 @@
 package vista;
 
 import modelo.excepciones.DispocisionNoExisteException;
+import javafx.scene.*;
 
 import controlador.Escenario;
 import controlador.ControladorDeInventario;
@@ -17,7 +18,7 @@ public class InventarioVista {
 
 
     private BorderPane root;
-    private ImageView seleccionado = null;
+    private Node seleccionado = null;
     private GridPane inventario;
     private ControladorDeInventario controlador;
 
@@ -37,6 +38,7 @@ public class InventarioVista {
 
         Label titulo1 = new Label("Crafting");
         titulo1.setId("titulo-inventario");
+        //creacion del inventario
         this.inventario = crearInventario(3, 9);
         Label titulo2 = new Label("Inventario");
         titulo2.setId("titulo-inventario");
@@ -120,10 +122,12 @@ public class InventarioVista {
         stack.getChildren().add(imageView);
         inventario.add(stack, fila, columna);
         stack.setId("casilla");
-        imageView.setOnMouseClicked(e -> {
+        imageView.setOnMouseDragged(e -> {
             System.out.println("IMAGEN");
             stack.getChildren().clear();
-            this.seleccionado = imageView;
+            
+            //this.seleccionado = imageView;
+            this.seleccionado = e.getPickResult().getIntersectedNode();
         });
         stack.setOnMouseReleased(e -> {
             if (this.seleccionado != null) {

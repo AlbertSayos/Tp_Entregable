@@ -48,7 +48,7 @@ public class ControladorDelJuego {
                 Posicion posicion = new Posicion(row,col);
                 Material objeto = juego.getMapa().obtenerObjeto(posicion);
                 
-                String nombreImagen = "negro.png";
+                String nombreImagen = "vacio.png";
                 if(objeto.getClass() == Madera.class)
                 	nombreImagen = "madera.png";
                 if(objeto.getClass() == Diamante.class)
@@ -117,12 +117,7 @@ public class ControladorDelJuego {
 	    
     }
 
-    private void eliminarPosicionDeLavistaSiguiente(GridPane mapa, int x, int y) {
-    	Node siguiente = getNodeFromGridPane(mapa,  this.juego.getJugador().getPosicionColumna()+x, this.juego.getJugador().getPosicionFila()+y);
-    	mapa.getChildren().remove(siguiente);
-    	
-    }
-    
+
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
