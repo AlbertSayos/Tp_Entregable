@@ -76,6 +76,7 @@ public class JuegoVista {
         // Teclado
         MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa);
         main.setOnKeyPressed(jugadorEventH);
+<<<<<<< HEAD
         /*main.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.E) {
                 escenario.activate("inventario");
@@ -98,6 +99,11 @@ public class JuegoVista {
             
         });
         */
+=======
+        
+        ClickMaterialJuegoEventHandler clickMaterialH = new ClickMaterialJuegoEventHandler(this, this.mapa);
+        mapa.setOnMouseClicked(clickMaterialH);
+>>>>>>> 9fd20749fd15c60820b8dc3529f9316c4815deb0
     }
 
 

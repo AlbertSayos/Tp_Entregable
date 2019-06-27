@@ -114,19 +114,21 @@ public class Juego {
     	Posicion posicion = new Posicion(x,y);
     	
     	Material materialObtenido = this.mapa.obtenerObjeto(posicion);
-    	if(materialObtenido == null) return false;
+    	if(materialObtenido == null) return true;
     	
     	try{
     		this.jugador.golpearMaterial(materialObtenido, posicion);
     	} 
     	catch (GolpeFueraDeRangoException ex) {
-    		return false;
+    		System.out.println("Fuerea de rango");
+    		return true;
     	}
     	catch(MaterialRotoException ex) {
     		this.mapa.removerMaterialDelMapa(posicion);
-    		return true;
+    		System.out.println("mateiral roto");
+    		return false;
     	}
-    	return false;
+    	return true;
     }
 
 

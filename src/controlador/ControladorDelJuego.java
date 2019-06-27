@@ -141,5 +141,28 @@ public class ControladorDelJuego {
         return null;
     }
     
+<<<<<<< HEAD
+=======
+    public void golpearMaterial(GridPane mapa, MouseEvent event){
+    	
+    	Node nodoClickeado = event.getPickResult().getIntersectedNode();
+    	   
+    	if (nodoClickeado!= mapa) {
+    		int colIndex = GridPane.getColumnIndex(nodoClickeado);
+    		int rowIndex = GridPane.getRowIndex(nodoClickeado);
+    		System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
+    		System.out.println(this.juego.jugador.getHerramientaEquipada().getDurabilidad());
+    		if(!this.juego.jugadorGolpeaEnPosicion(colIndex, rowIndex)){
+    			mapa.getChildren().remove(nodoClickeado);    			
+    		}
+    	
+    		
+    	}
+    	
+    	
+    }
+    
+    	
+>>>>>>> 9fd20749fd15c60820b8dc3529f9316c4815deb0
 
 }
