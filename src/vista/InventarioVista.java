@@ -1,5 +1,6 @@
 package vista;
 
+import modelo.constructores.Mesa;
 import modelo.excepciones.DispocisionNoExisteException;
 import javafx.scene.*;
 
@@ -21,7 +22,7 @@ public class InventarioVista {
     private Node seleccionado = null;
     private GridPane inventario;
     private ControladorDeInventario controlador;
-
+    private HBox mesa;
 
 
     public InventarioVista(Escenario escenario) {
@@ -42,7 +43,7 @@ public class InventarioVista {
         this.inventario = crearInventario(3, 9);
         Label titulo2 = new Label("Inventario");
         titulo2.setId("titulo-inventario");
-        HBox mesaDeCrafteo = crearMesa();
+        HBox mesaDeCrafteo = crearMesa();	
 
         contenedor.getChildren().addAll(titulo1, mesaDeCrafteo, titulo2, inventario);
 
@@ -62,6 +63,7 @@ public class InventarioVista {
                 escenario.mostrar("juego");
             }
         });
+        this.mesa = mesaDeCrafteo;
     }
 
 
@@ -110,7 +112,7 @@ public class InventarioVista {
         return contenedor;
     }
 
-
+    
     private void agregarElemento(GridPane inventario, String elemento, int fila, int columna) {
 
         System.out.println("En inventario vista agregarElemento recibe como elemento: "+elemento);
@@ -122,9 +124,9 @@ public class InventarioVista {
         stack.getChildren().add(imageView);
         inventario.add(stack, fila, columna);
         stack.setId("casilla");
-        imageView.setOnMouseDragged(e -> {
+        imageView.setOnMouseClicked(e -> {
             System.out.println("IMAGEN");
-            stack.getChildren().clear();
+            //stack.getChildren().clear();
             
             //this.seleccionado = imageView;
             this.seleccionado = e.getPickResult().getIntersectedNode();
@@ -132,6 +134,7 @@ public class InventarioVista {
         stack.setOnMouseReleased(e -> {
             if (this.seleccionado != null) {
                 System.out.println("PONGO");
+                stack.getChildren().clear();
                 stack.getChildren().add(this.seleccionado);
                 this.seleccionado = null;
             }
@@ -149,6 +152,7 @@ public class InventarioVista {
         stackBack.setOnMouseReleased(e -> {
             if (this.seleccionado != null) {
                 System.out.println("BACK");
+                
                 stackBack.getChildren().add(this.seleccionado);
                 int pos = (fila * 3) + col;
                 this.controlador.agregarAMesaCrafteo(this.seleccionado.getId().charAt(0),pos);
@@ -177,6 +181,8 @@ public class InventarioVista {
                 agregarCasilla(this.inventario, col, fila);
             }
         }
+        System.out.println("****LIMPIO MESA ***");
+        this.mesa = this.crearMesa();
     }
 
 

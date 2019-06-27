@@ -34,6 +34,7 @@ public class ControladorDeInventario {
     public void actualizarVista() {
         System.out.println("Actualizando vista de controlador de inventario");
         this.inventarioVista.limpiar();
+        this.mesaCrafteo = new Mesa(9);
         System.out.println("inventarioVista limpio");
         int j = -1;
         for (int i = 0; i < this.materiales.size(); i++) {

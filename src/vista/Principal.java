@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 import modelo.juego.Juego;
 import modelo.jugador.Jugador;
 
+
 public class Principal extends Application {
 
 
@@ -31,11 +32,10 @@ public class Principal extends Application {
 
     
     public void loadMainMenu(Stage primaryStage) {
-
-
+    	
         try {
 
-
+        	
             BorderPane panel = new BorderPane();
             panel.setPadding(new Insets(20, 0, 20, 20));
             Boton comenzar = new Boton("Comenzar");
@@ -53,7 +53,7 @@ public class Principal extends Application {
             Scene escena = new Scene(panel, 1000, 700);
             primaryStage.setTitle("ALGOCRAFT");
             primaryStage.setScene(escena);
-            primaryStage.show();
+
             Escenario escenario = new Escenario(escena);
             SelectorDeHerramientas selectorHerramientas = new SelectorDeHerramientas();
             InventarioVista inventarioVista = new InventarioVista(escenario);
@@ -78,7 +78,10 @@ public class Principal extends Application {
                 if (posicion != null) {
                     jugador.seleccionarHerramienta(posicion);
                 }
-            });
+            });	
+            
+            
+            primaryStage.show();
         }
 
         catch (Exception e) {

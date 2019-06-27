@@ -26,7 +26,7 @@ public class JuegoVista {
         menu.setAlignment(Pos.CENTER);
         Boton btnInventario = new Boton("Inventario - [E]");
         Boton btnMenu = new Boton("Menu - [ESC]");
-        btnInventario.setOnAction(e -> escenario.mostrar("inventario"));
+        btnInventario.setOnAction(e ->{escenario.mostrar("inventario"); this.controlador.actualizarInventario();});
         btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
         menu.setStyle("-fx-background-image: url('fondo.png')");
