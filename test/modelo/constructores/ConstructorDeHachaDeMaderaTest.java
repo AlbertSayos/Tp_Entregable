@@ -7,7 +7,8 @@ import org.junit.Test;
 import junit.framework.Assert;
 import modelo.herramientas.*;
 import modelo.materiales.*;
-/*
+
+
 public class ConstructorDeHachaDeMaderaTest{
 	
 	@Test
@@ -31,4 +32,4 @@ public class ConstructorDeHachaDeMaderaTest{
 		
 		Assert.assertTrue(constructor.puedeConstruir(mesa));
 	}
-}*/
+}

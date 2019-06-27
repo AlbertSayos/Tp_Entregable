@@ -7,17 +7,18 @@ import modelo.posicion.Posicion;
 public class ConstructorDePicoDePiedra extends ConstructorDeHerramientas{
 
 	public ConstructorDePicoDePiedra() {
-/*
-		crafteo.put(new Posicion(0,0), new Madera());
-		crafteo.put(new Posicion(0,1), new Madera());
-		crafteo.put(new Posicion(1,0), new Madera());
-		crafteo.put(new Posicion(1,1), new Madera());
-		crafteo.put(new Posicion(1,2), new Madera());*/
+		int cantidadDeMateriales = 9;
+		mesa = new Mesa(cantidadDeMateriales);
+		mesa.agregarMaterialEnPosicion(new Piedra(), 0);
+		mesa.agregarMaterialEnPosicion(new Piedra(), 1);
+		mesa.agregarMaterialEnPosicion(new Piedra(), 2);
+		mesa.agregarMaterialEnPosicion(new Madera(), 4);
+		mesa.agregarMaterialEnPosicion(new Madera(), 7);
 	}
-	/*
+
 	@Override
-	public Herramienta crearHerramienta() {
+	public Herramienta ConstruirHerramienta() {
 		return new PicoDePiedra();
 	}
-*/
-}
+
+} 

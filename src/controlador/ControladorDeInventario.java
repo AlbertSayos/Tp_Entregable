@@ -79,7 +79,8 @@ public class ControladorDeInventario {
         mesaCrafteo.agregarMaterialEnPosicion(material,pos);
     }
 
-    /*public Herramienta crearHerramienta() {
-        return mesaCrafteo.construir();
-    }*/
+    public Herramienta crearHerramienta() {
+        //return mesaCrafteo.construir();
+    	return null;
+    }
 }

@@ -5,10 +5,10 @@ import java.util.List;
 
 import modelo.herramientas.*;
 
-public class ConstructorDeHerramientas {
-/*
-	Mesa mesa;
+public abstract class ConstructorDeHerramientas {
 
+
+	Mesa mesa;
 	public boolean puedeConstruir(Mesa otraMesa) {
 		return mesa.esEquivalente(otraMesa);
 	}
@@ -27,53 +27,5 @@ public class ConstructorDeHerramientas {
 	}
 
 
-	public Herramienta construirPicoDeMadera() {
-
-		ConstructorDePicoDeMadera constructorDePicoDeMadera = new ConstructorDePicoDeMadera();
-		return constructorDePicoDeMadera.ConstruirHerramienta();
-
-	}
-
-	public Herramienta construirPicoDePiedra() {
-
-		ConstructorDePicoDePiedra constructorDePicoDePiedra = new ConstructorDePicoDePiedra();
-		return constructorDePicoDePiedra.ConstruirHerramienta();
-
-	}
-
-	public Herramienta construirPicoDeMetal() {
-
-		ConstructorDePicoDeMetal constructorDePicoDeMetal = new ConstructorDePicoDeMetal();
-		return constructorDePicoDeMetal.ConstruirHerramienta();
-
-	}
-
-	public Herramienta construirHachaDeMadera() {
-
-		ConstructorDeHachaDeMadera constructorDeHachaDeMadera = new ConstructorDeHachaDeMadera();
-		return constructorDeHachaDeMadera.ConstruirHerramienta();
-
-	}
-
-	public Herramienta construirHachaDePiedra() {
-
-		ConstructorDeHachaDePiedra constructorDeHachaDePiedra = new ConstructorDeHachaDePiedra();
-		return constructorDeHachaDePiedra.ConstruirHerramienta();
-
-	}
-
-	public Herramienta construirHachaDeMetal() {
-
-		ConstructorDeHachaDeMetal constructorDeHachaDeMetal = new ConstructorDeHachaDeMetal();
-		return constructorDeHachaDeMetal.ConstruirHerramienta();
-
-	}
-
-	public Herramienta construirPicoFino() {
-
-		ConstructorDePicoFino constructorDePicoFino = new ConstructorDePicoFino();
-		return constructorDePicoFino.ConstruirHerramienta();
-
-	}
-*/
+	public abstract Herramienta ConstruirHerramienta();
 }
