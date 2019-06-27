@@ -36,8 +36,8 @@ public class PicoDeMetal extends Pico{
 	}
 
 	@Override
-	public String getIdentificador() {
-		return "Pico de metal";
+	public String getRutaImagen() {
+		return "picoDeMetal.png";
 	}
 
 	@Override
@@ -50,8 +50,5 @@ public class PicoDeMetal extends Pico{
 
 	}
 
-	@Override
-	public String getImagen() {
-		return null;
-	}
+
 }

@@ -41,8 +41,6 @@ public abstract class Herramienta {
 	
 	public abstract void golpear(Diamante unaDiamante);
 
-    public abstract String getIdentificador();
-
     public boolean esEquivalente(Herramienta otraHerramienta){
 
         return this.getClass() == otraHerramienta.getClass();
@@ -57,5 +55,5 @@ public abstract class Herramienta {
     	return (durabilidad <=0.0);
     }
     
-    public abstract String getImagen();
+    public abstract String getRutaImagen();
 }

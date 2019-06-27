@@ -15,7 +15,7 @@ import javafx.stage.StageStyle;
 import modelo.juego.Juego;
 import modelo.jugador.Jugador;
 
-public class AlgoCraft extends Application {
+public class Principal extends Application {
 
 
     public static void main(String[] args) {
@@ -44,8 +44,6 @@ public class AlgoCraft extends Application {
             comenzar.setMaxWidth(Double.MAX_VALUE);
             creditos.setMaxWidth(Double.MAX_VALUE);
             salir.setMaxWidth(Double.MAX_VALUE);
-
-
             VBox botonera = new VBox();
             botonera.setAlignment(Pos.CENTER);
             botonera.setSpacing(10);
@@ -57,39 +55,25 @@ public class AlgoCraft extends Application {
             primaryStage.setScene(escena);
             primaryStage.show();
             Escenario escenario = new Escenario(escena);
-
             SelectorDeHerramientas selectorHerramientas = new SelectorDeHerramientas();
             InventarioVista inventarioVista = new InventarioVista(escenario);
             JuegoVista juegoVista = new JuegoVista(escenario, selectorHerramientas);
             CreditosVista creditosVista = new CreditosVista(escenario);
-
             escenario.set("entrada", panel);
             escenario.set("inventario", inventarioVista.getPane());
             escenario.set("juego", juegoVista.getPane());
             escenario.set("creditos", creditosVista.getPane());
-
-            comenzar.setOnAction(e -> {
-                escenario.mostrar("juego");
-            });
-
-            creditos.setOnAction(e -> {
-                escenario.mostrar("creditos");
-            });
-
-            salir.setOnAction(e -> {
-                System.exit(0);
-            });
-
+            comenzar.setOnAction(e -> { escenario.mostrar("juego"); });
+            creditos.setOnAction(e -> { escenario.mostrar("creditos"); });
+            salir.setOnAction(e -> { System.exit(0); });
             Juego juego = new Juego();
             Jugador jugador = juego.getJugador();
             ControladorDeInventario controladorDeInventario = new ControladorDeInventario(jugador.getInventario(), inventarioVista, selectorHerramientas);
             controladorDeInventario.actualizarVista();
             ControladorDelJuego controladorJuego = new ControladorDelJuego(juegoVista, juego, controladorDeInventario);
             controladorJuego.actualizarVista();
-
             selectorHerramientas.setOnMouseClicked(e -> {
                 Integer posicion = selectorHerramientas.getPosicion(e);
-
                 if (posicion != null) {
                     jugador.seleccionarHerramienta(posicion);
                 }

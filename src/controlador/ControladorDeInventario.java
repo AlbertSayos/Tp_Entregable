@@ -1,6 +1,7 @@
 package controlador;
 
 
+import modelo.constructores.Mesa;
 import modelo.herramientas.Herramienta;
 import modelo.jugador.Inventario;
 import modelo.materiales.*;
@@ -18,7 +19,7 @@ public class ControladorDeInventario {
     private ArrayList<Herramienta> herramientas;
     private InventarioVista inventarioVista;
     private HashMap<Character, String> materialesHash = new HashMap<>();
-    private MesaDeCrafteo mesaCrafteo = new MesaDeCrafteo();
+    private Mesa mesaCrafteo = new Mesa(9);
 
     public ControladorDeInventario(Inventario inventario, InventarioVista inventarioVista, SelectorDeHerramientas selectorHerramientas) {
         System.out.println("Iniciando constructor de Controlador de inventario");
@@ -47,8 +48,8 @@ public class ControladorDeInventario {
         System.out.println("Selector de herramientas limpio");
         for (int i = 0; i < herramientas.size(); i++) {
             System.out.println("Agregando herramientas al selector");
-            System.out.println("El identificador de la herramienta es: "+herramientas.get(i).getIdentificador());
-            this.selectorHerramientas.agregar(herramientas.get(i).getIdentificador(), i);
+            System.out.println("El identificador de la herramienta es: "+herramientas.get(i).getRutaImagen());
+            this.selectorHerramientas.agregar(herramientas.get(i).getRutaImagen(), i);
         }
         System.out.println("Saliendo de vista de controlador de inventario");
     }
@@ -74,10 +75,10 @@ public class ControladorDeInventario {
             }
             index++;
         }
-        mesaCrafteo.colocar(material, pos);
+        mesaCrafteo.agregarMaterialEnPosicion(material,pos);
     }
 
-    public Herramienta crearHerramienta() {
+    /*public Herramienta crearHerramienta() {
         return mesaCrafteo.construir();
-    }
+    }*/
 }

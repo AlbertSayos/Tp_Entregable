@@ -13,8 +13,8 @@ public class HachaDeMetal extends Hacha  {
 
 
 	@Override
-	public String getIdentificador() {
-		return "Hacha de metal";
+	public String getRutaImagen() {
+		return "hachaDeMetal.png";
 	}
 
 	@Override
@@ -27,8 +27,5 @@ public class HachaDeMetal extends Hacha  {
 
 	}
 
-	@Override
-	public String getImagen() {
-		return null;
-	}
+
 }

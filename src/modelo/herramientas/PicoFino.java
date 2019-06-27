@@ -4,6 +4,7 @@ import modelo.materiales.*;
 
 public class PicoFino extends Pico{
 
+
 	public PicoFino(){
 		
 		this.durabilidad = 1000;
@@ -31,21 +32,18 @@ public class PicoFino extends Pico{
 		//if(durabilidad <0) durabilidad = 0; // ENTONCES SE ROMPE LA HERRAMIENTA
 											// FALTA IMPLEMENTAR ESO
 	}
+
 	/*
 	public Boolean validar(Material unMaterial){
 		return (unMaterial instanceof Diamante) ;
 	}
 	*/
 
-
 	public void golpear(Madera unaMadera) { }
 
-	
 	public void golpear(Piedra unaPiedra) { }
-
 	
 	public void golpear(Metal unMetal) { }
-
 
 	public void golpear(Diamante unDiamante) {
 
@@ -55,8 +53,8 @@ public class PicoFino extends Pico{
 	}
 
 	@Override
-	public String getIdentificador() {
-		return "Pico fino";
+	public String getRutaImagen() {
+		return "picoFino.png";
 	}
 
 	@Override
@@ -69,8 +67,4 @@ public class PicoFino extends Pico{
 
 	}
 
-	@Override
-	public String getImagen() {
-		return null;
-	}
 }

@@ -11,8 +11,8 @@ public class HachaDePiedra extends Hacha {
 	}
 
 	@Override
-	public String getIdentificador() {
-		return "Hacha de piedra";
+	public String getRutaImagen() {
+		return "hachaDePiedra.png";
 	}
 
 	@Override
@@ -25,8 +25,4 @@ public class HachaDePiedra extends Hacha {
 
 	}
 
-	@Override
-	public String getImagen() {
-		return null;
-	}
 }

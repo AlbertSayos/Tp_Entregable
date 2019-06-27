@@ -140,9 +140,8 @@ public class ControladorDelJuego {
         }
         return null;
     }
-    
-<<<<<<< HEAD
-=======
+
+
     public void golpearMaterial(GridPane mapa, MouseEvent event){
     	
     	Node nodoClickeado = event.getPickResult().getIntersectedNode();
@@ -162,7 +161,5 @@ public class ControladorDelJuego {
     	
     }
     
-    	
->>>>>>> 9fd20749fd15c60820b8dc3529f9316c4815deb0
 
 }

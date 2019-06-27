@@ -27,8 +27,8 @@ public class PicoDeMadera extends Pico{
 	}
 
 	@Override
-	public String getIdentificador() {
-		return "Pico de madera";
+	public String getRutaImagen() {
+		return "picoDeMadera.png";
 	}
 
 	@Override
@@ -41,8 +41,5 @@ public class PicoDeMadera extends Pico{
 
 	}
 
-	@Override
-	public String getImagen() {
-		return null;
-	}
+
 }

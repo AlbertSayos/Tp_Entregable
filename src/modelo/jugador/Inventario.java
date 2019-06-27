@@ -36,21 +36,8 @@ public class Inventario {
 
     public boolean contieneHerramienta(Herramienta herramienta) {
 
-        int i = 0;
-        boolean herramientaEncontrada = false;
+        return this.herramientas.contains(herramienta);
 
-        while((!herramientaEncontrada) && (i <= herramientas.size())){
-
-
-            if (herramienta.esEquivalente(herramientas.get(i))) {
-                herramientaEncontrada = true;
-            }
-
-            i++;
-
-        }
-
-        return herramientaEncontrada;
     }
 
 
@@ -62,14 +49,14 @@ public class Inventario {
 
 
     public Material seleccionarMaterial(int posicion) {
-
+        //No se puede acceder a un indice fuera del tamaño de materiales.
         return materiales.get(posicion);
 
     }
 
 
     public Herramienta seleccionarHerramienta(int posicion) {
-
+        //No se puede acceder a un indice fuera del tamaño de herramientas.
         this.posicionHerramientaSeleccionada = posicion;
         return herramientas.get(posicion);
 

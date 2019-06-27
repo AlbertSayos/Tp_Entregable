@@ -92,9 +92,9 @@ public class InventarioVista {
         Boton crear = new Boton("Crear");
         crear.setOnAction(e -> {
             try {
-                Herramienta nuevaHerramienta = controlador.crearHerramienta();
+                /*Herramienta nuevaHerramienta = controlador.crearHerramienta();
                 ImageView herramienta = getImagen(nuevaHerramienta.getIdentificador(), 40);
-                contenedor.getChildren().add(herramienta);
+                contenedor.getChildren().add(herramienta);*/
             } catch (DispocisionNoExisteException ex) {
             }
         });
