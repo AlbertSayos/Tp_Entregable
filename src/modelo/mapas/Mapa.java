@@ -14,9 +14,7 @@ public class Mapa{
 	protected HashMap<Posicion, Material> terreno;
 	private int indicePosicionVacia;
 	protected Material sinMaterial;
-	private int maximo = 12;
-	//Maximo en x y en y igual a 12.
-
+	private int filas = 22, columnas = 13;
 
 	public Mapa(){
 		this.sinMaterial = new SinMaterial();
@@ -30,9 +28,9 @@ public class Mapa{
 
 	private void cargarMapa(){
 
-		for(int i = 0; i < maximo; i++){
+		for(int i = 0; i < filas; i++){
 
-			for(int j = 0; j < maximo; j++){
+			for(int j = 0; j < columnas; j++){
 
 				Posicion posicion = new Posicion(i,j);
 				this.posicionesVacias.add(posicion);
@@ -66,7 +64,7 @@ public class Mapa{
 	public boolean posicionInvalida(Posicion unaPosicion){
 
 		boolean filtro1 = this.terreno.containsKey(unaPosicion);
-		boolean filtro2 = (!unaPosicion.estaEnLimmites(0, 0, 12,12));
+		boolean filtro2 = (!unaPosicion.estaEnLimmites(0, 0, filas,columnas));
 		
 		return (filtro1 || filtro2);
 	}
@@ -112,4 +110,9 @@ public class Mapa{
 	public void removerMaterialDelMapa(Posicion unaPosicion) {
 		this.terreno.remove(unaPosicion);
 	}
+
+
+	public int getFilas(){return this.filas;}
+	public int getColumnas(){ return this.columnas;}
+
 }

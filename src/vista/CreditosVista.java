@@ -17,7 +17,8 @@ public class CreditosVista {
     public CreditosVista(Escenario escenario) {
         this.escenario = escenario;
         pane = new BorderPane();
-        pane.setId("background");
+
+        this.pane.setStyle("-fx-background-image: url('fondo.png')");
 
         // Top
         HBox hBox = new HBox();

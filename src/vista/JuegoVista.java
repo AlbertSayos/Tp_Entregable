@@ -4,6 +4,7 @@ import controlador.*;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 
 
@@ -15,15 +16,12 @@ public class JuegoVista {
 
 
     public JuegoVista(Escenario escenario, SelectorDeHerramientas selectorHerramientas) {
-        main = new BorderPane();
-        main.setId("juego-escena");
 
+
+        main = new BorderPane();
         this.mapa = new GridPane();
         mapa.setAlignment(Pos.CENTER);
-
         this.mapa.setStyle("-fx-background-image: url('fondo.png')");
-
-        // Top menu
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
         Boton btnInventario = new Boton("Inventario - [E]");
@@ -31,18 +29,7 @@ public class JuegoVista {
         btnInventario.setOnAction(e -> escenario.mostrar("inventario"));
         btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
-
-        // Botones para moverse
-        VBox flechasMover = new VBox();
-        flechasMover.setAlignment(Pos.BOTTOM_CENTER);
-        HBox flechasMoverAbajo = new HBox();
-        Boton btnMoverIzquierda = new Boton("A");
-        Boton btnMoverDerecha = new Boton("D");
-        Boton btnMoverAbajo = new Boton("S");
-        flechasMoverAbajo.getChildren().addAll(btnMoverIzquierda,btnMoverAbajo,btnMoverDerecha);
-        Boton btnMoverArriba = new Boton("W");
-        flechasMover.getChildren().addAll(btnMoverArriba, flechasMoverAbajo);
-
+        menu.setStyle("-fx-background-image: url('fondo.png')");
         // Botones para golpear
         VBox flechasGolpear = new VBox();
         flechasGolpear.setAlignment(Pos.BOTTOM_CENTER);
@@ -53,19 +40,14 @@ public class JuegoVista {
         flechasGolpearAbajo.getChildren().addAll(btnGolpearIzquierda,btnGolpearAbajo,btnGolpearDerecha);
         Boton btnGolpearArriba = new Boton("▲");
         flechasGolpear.getChildren().addAll(btnGolpearArriba, flechasGolpearAbajo);
-
+        flechasGolpear.setStyle("-fx-background-image: url('fondo.png')");
+        main.setStyle("-fx-background-image: url('fondo.png')");
         // Main game
         main.setTop(menu);
         main.setCenter(mapa);
-        main.setLeft(flechasMover);
         main.setRight(flechasGolpear);
         main.setBottom(selectorHerramientas);
 
-        // Mouse
-        btnMoverIzquierda.setOnAction( e -> controlador.moverIzquierda(mapa));
-        btnMoverDerecha.setOnAction( e -> controlador.moverDerecha(mapa));
-        btnMoverAbajo.setOnAction( e -> controlador.moverAbajo(mapa));
-        btnMoverArriba.setOnAction( e -> controlador.moverArriba(mapa));
 /*
         btnGolpearIzquierda.setOnAction( e -> controlador.golpearIzquierda());
         btnGolpearDerecha.setOnAction( e -> controlador.golpearDerecha());
@@ -75,12 +57,12 @@ public class JuegoVista {
         // Teclado
         MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa);
         main.setOnKeyPressed(jugadorEventH);
-        /*main.setOnKeyPressed(event -> {
+        main.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.E) {
-                escenario.activate("inventario");
+                escenario.mostrar("inventario");
             }
             if (event.getCode() == KeyCode.ESCAPE) {
-                escenario.activate("main");
+                escenario.mostrar("entrada");
             }
             if (event.getCode() == KeyCode.W) {
                 controlador.moverArriba(mapa);
@@ -96,7 +78,6 @@ public class JuegoVista {
             }
             
         });
-        */
 
         ClickMaterialJuegoEventHandler clickMaterialH = new ClickMaterialJuegoEventHandler(this, this.mapa);
         mapa.setOnMouseClicked(clickMaterialH);
@@ -109,8 +90,9 @@ public class JuegoVista {
 
 
     public void agregarElemento(String nombreImagen, int fila, int col) {
-        //System.out.println("La imagen que se esta agregando en mapa es: "+nombreImagen);
-        ImageView img = new ImageView(new Image(nombreImagen, 32, 0, true, true));
+
+        System.out.println("La imagen que se esta agregando en mapa es: "+nombreImagen);
+        ImageView img = new ImageView(new Image(nombreImagen, 46, 0, true, true));
         mapa.add(img, col, fila);
 
 

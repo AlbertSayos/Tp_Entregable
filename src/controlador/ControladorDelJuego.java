@@ -30,14 +30,15 @@ public class ControladorDelJuego {
         juegoVista.setControlador(this);
         this.jugadorPosX = 0;
         this.jugadorPosY = 0;
+
     }
 
 
     public void actualizarVista() {
 
-        for(int row = 0; row < 12 ; row++)
+        for(int row = 0; row < juego.getMapa().getFilas() ; row++)
         {
-            for(int col = 0; col < 12; col++)
+            for(int col = 0; col < juego.getMapa().getColumnas(); col++)
             {
                 Posicion posicion = new Posicion(row,col);
                 Material objeto = juego.getMapa().obtenerObjeto(posicion);
@@ -48,8 +49,6 @@ public class ControladorDelJuego {
         }
     }
 
-    
-    
 
     public void moverArriba(GridPane mapa){
     	

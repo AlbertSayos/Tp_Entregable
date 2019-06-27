@@ -11,7 +11,10 @@ public abstract class Herramienta {
     protected float durabilidad;
     protected int fuerza;
     protected float factorDeDesgaste;
+    public String identificador;
 
+
+    public String getIdentificador(){return this.identificador;}
 
     public abstract void desgastarse();
 /*

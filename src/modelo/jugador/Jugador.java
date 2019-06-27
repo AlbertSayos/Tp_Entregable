@@ -84,11 +84,13 @@ public class Jugador {
 
 
     public Inventario obtenerInventario() {
+
 		return this.inventario;
     }
 
 
 	public void golpearMaterial(Material material, Posicion unaPosicion) {
+
 		if(!puedeGolpear(unaPosicion)) throw new GolpeFueraDeRangoException();
 		try {
 			if (this.herramientaEquipada == null) {
@@ -106,6 +108,7 @@ public class Jugador {
 
 
 	public void equipar(Herramienta herramienta) {
+
 		if (this.herramientaEquipada != null) {
 			this.inventario.agregarHerramienta(this.herramientaEquipada);
 		}
@@ -133,44 +136,31 @@ public class Jugador {
 	}
 
 
-	public Jugador(Mapa mapa) {
-
-		this.mesaDeCrafteo = new Mesa(9);
-		this.inventario = new Inventario();
-		this.posicionActual = new Posicion(0,0);
-		this.inventario.agregarHerramienta(new HachaDeMadera());
-		this.estaPosicionado = false;
-		this.mapa = mapa;
-		this.herramientaSeleccionada = new HachaDeMadera();
-
-	}
-
-
 	public boolean inventarioContieneHerramienta(Herramienta herramienta) {
+
 		return this.inventario.contieneHerramienta(herramienta);
+
 	}
 
 
 	public boolean inventarioContieneMaterial(Material material) {
+
 		return this.inventario.contieneMaterial(material);
 	}
 
 
-	public void setPosicion(int fila, int columna) {
-
-		this.posicionActual.x =(columna);
-		this.posicionActual.y =(fila);
-		this.estaPosicionado = true;
-	}
-
 
 	public int getPosicionColumna() {
+
 		return this.posicionActual.x;
+
 	}
 
 
 	public int getPosicionFila() {
+
 		return this.posicionActual.y;
+
 	}
 
 
@@ -189,16 +179,20 @@ public class Jugador {
 
 
 	public void agregarMaterialAInventario(Material material) {
+
 		this.inventario.agregarMaterial(material);
 	}
 
 
 	public void agregarHerramientaAInventario(Herramienta herramienta) {
+
 		this.inventario.agregarHerramienta(herramienta);
+
 	}
 
 
 	public boolean puedeGolpear(Posicion posicion){
+
         Posicion derecha, izquierda;
 
         derecha = miDerecha();

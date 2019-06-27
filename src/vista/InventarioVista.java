@@ -24,8 +24,12 @@ public class InventarioVista {
 
 
     public InventarioVista(Escenario escenario) {
+
+
         root = new BorderPane();
         root.setId("background");
+
+        this.root.setStyle("-fx-background-image: url('crafteo.png')");
 
         VBox contenedor = new VBox();
         contenedor.setAlignment(Pos.CENTER);
@@ -85,9 +89,9 @@ public class InventarioVista {
         contenedor.setAlignment(Pos.CENTER);
         GridPane mesa = crearInventario(3, 3);
 
-        ImageView flecha = getImagen("flecha.png", 48);
-        ImageView resultado = getImagen("casilla.png", 64);
-        resultado.setId("casilla");
+        ImageView flecha = getImagen("flecha.png", 50);
+        ImageView resultado = getImagen("casilla.png", 70);
+
 
         Boton crear = new Boton("Crear");
         crear.setOnAction(e -> {
