@@ -27,6 +27,7 @@ public class HachaDeMetalTest {
 		Assert.assertEquals(10,hachaDeMetal.getFuerza());
 	}
 	
+	/*
 	@Test
 	public void hachaDeMetalSeUsaContraMaderaYSeReduceSuDurabilidad() {
 		Hacha hachaDeMetal = new HachaDeMetal();
@@ -34,7 +35,7 @@ public class HachaDeMetalTest {
 		float durabilidadInicial = hachaDeMetal.getDurabilidad();
 		hachaDeMetal.usar(madera);	
 		Assert.assertEquals(durabilidadInicial - 5,hachaDeMetal.getDurabilidad());
-	}
+	}*/
 	
 	@Test
 	public void hachaDeMetalSeUsaContraPiedraYSeReduceSuDurabilidad() {

@@ -12,7 +12,7 @@ public class Diamante extends Material{
 
 		durabilidad = 100;
 		identidad = "4";
-		this.imagen = "diamante.png";
+		//this.imagen = "diamante.png";
 
 	}
 

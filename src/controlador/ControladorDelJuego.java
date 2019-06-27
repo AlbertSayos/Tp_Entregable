@@ -32,9 +32,14 @@ public class ControladorDelJuego {
         this.jugadorPosY = 0;
 
     }
+    
+    public void actualizarInventario() {
+    	this.controladorDeInventario.actualizarVista();
+    }
 
 
     public void actualizarVista() {
+    	Posicion posJugador = juego.getJugador().miPosicion();
 
         for(int row = 0; row < juego.getMapa().getFilas() ; row++)
         {
@@ -42,94 +47,81 @@ public class ControladorDelJuego {
             {
                 Posicion posicion = new Posicion(row,col);
                 Material objeto = juego.getMapa().obtenerObjeto(posicion);
-                String nombreImagen = objeto.getRutaImagen();
-                //System.out.println(nombreImagen);
-                juegoVista.agregarElemento(nombreImagen, col, row);
+                
+                String nombreImagen = "negro.png";
+                if(objeto.getClass() == Madera.class)
+                	nombreImagen = "madera.png";
+                if(objeto.getClass() == Diamante.class)
+                	nombreImagen = "diamante.png";
+                if(objeto.getClass() == Metal.class)
+                	nombreImagen = "metal.png";
+                if(objeto.getClass() == Piedra.class)
+                	nombreImagen = "piedra.png";
+                
+                if(!posJugador.equals(posicion)) juegoVista.agregarElemento(nombreImagen, col, row);
             }
         }
+        
+        juegoVista.agregarElemento("jugador.png", juego.getJugador().getPosicionFila(), juego.getJugador().getPosicionColumna());
+        
     }
 
 
     public void moverArriba(GridPane mapa){
     	
-    	if(!this.juego.getMovimientos().moverJugadorArriba(this.juego.mapa)){
-    		
-    		return;
-    	}
-    	
-    	Node jugadorNode =  getNodeFromGridPane(mapa, this.jugadorPosX, this.jugadorPosY);
-    	Node siguiente = getNodeFromGridPane(mapa, this.jugadorPosX, this.jugadorPosY-1);
-    	
-    	mapa.getChildren().remove(jugadorNode);
-    	mapa.getChildren().remove(siguiente);
-    	
-    	//this.juegoVista.agregarElemento("negro.png", this.jugadorPosX, this.jugadorPosY);
-    	
-    	this.jugadorPosY --;
-    	mapa.add(jugadorNode, this.jugadorPosX, this.jugadorPosY);
+    	eliminarPosicionDeLavista(mapa);
+    	this.juego.getMovimientos().moverJugadorArriba(this.juego.mapa);
+    	this.eliminarPosicionDeLavista(mapa);
+	    this.juegoVista.agregarElemento("jugador.png", this.juego.getJugador().getPosicionFila(), this.juego.getJugador().getPosicionColumna());	
+
    
     }
 
 
     public void moverAbajo(GridPane mapa){
     	
-    	if(!this.juego.getMovimientos().moverJugadorAbajo(this.juego.mapa)){
-    		
-    		return;
-    	}
-    	
-    	Node jugadorNode =  getNodeFromGridPane(mapa, this.jugadorPosX, this.jugadorPosY);
-    	Node siguiente = getNodeFromGridPane(mapa, this.jugadorPosX, this.jugadorPosY+1);
-    	
-    	mapa.getChildren().remove(jugadorNode);
-    	mapa.getChildren().remove(siguiente);
-    	
-    	//this.juegoVista.agregarElemento("negro.png", this.jugadorPosX, this.jugadorPosY);
-    	
-    	this.jugadorPosY++ ;
-    	mapa.add(jugadorNode, this.jugadorPosX, this.jugadorPosY);
+    	eliminarPosicionDeLavista(mapa);    	
+    	this.juego.getMovimientos().moverJugadorAbajo(this.juego.mapa) ;
+    	this.eliminarPosicionDeLavista(mapa);
+	    this.juegoVista.agregarElemento("jugador.png", this.juego.getJugador().getPosicionFila(), this.juego.getJugador().getPosicionColumna());	
+
 
     }
 
 
     public void moverDerecha(GridPane mapa){
     	
-    	if(!this.juego.getMovimientos().moverJugadorDerecha(this.juego.mapa)) return;
-    		
-	    Node jugadorNode =  getNodeFromGridPane(mapa, this.jugadorPosX, this.jugadorPosY);
-	    Node siguiente = getNodeFromGridPane(mapa, this.jugadorPosX+1, this.jugadorPosY);
-	        	
-	    mapa.getChildren().remove(jugadorNode);
-	    mapa.getChildren().remove(siguiente);
-	        	
-	    //this.juegoVista.agregarElemento("negro.png", this.jugadorPosX, this.jugadorPosY);
-	    
-	    this.jugadorPosX ++;
-	        	
-	    mapa.add(jugadorNode, this.jugadorPosX, this.jugadorPosY);
-	    		
+    	eliminarPosicionDeLavista(mapa);
+    	this.juego.getMovimientos().moverJugadorDerecha(this.juego.mapa);
+    	this.eliminarPosicionDeLavista(mapa);
+    	this.juegoVista.agregarElemento("jugador.png", this.juego.getJugador().getPosicionFila(), this.juego.getJugador().getPosicionColumna());	
     	
     	    
     }
     
 
     public void moverIzquierda(GridPane mapa){
+    	
+    	eliminarPosicionDeLavista(mapa);	    
+    	this.juego.getMovimientos().moverJugadorIzquierda(this.juego.mapa);
+    	this.eliminarPosicionDeLavista(mapa);
+    	this.juegoVista.agregarElemento("jugador.png", this.juego.getJugador().getPosicionFila(), this.juego.getJugador().getPosicionColumna());	
 
-    	if(!this.juego.getMovimientos().moverJugadorIzquierda(this.juego.mapa)) return;
-        	
-    	Node jugadorNode =  getNodeFromGridPane(mapa, this.jugadorPosX, this.jugadorPosY);
-        Node siguiente = getNodeFromGridPane(mapa, this.jugadorPosX-1, this.jugadorPosY);
-        
-       	mapa.getChildren().remove(jugadorNode);
-       	mapa.getChildren().remove(siguiente);
-        
-       	//this.juegoVista.agregarElemento("negro.png", this.jugadorPosX, this.jugadorPosY);       	
-       	
-       	this.jugadorPosX --;
-       	mapa.add(jugadorNode, this.jugadorPosX, this.jugadorPosY);    		
     	
     }
+    
+    private void eliminarPosicionDeLavista(GridPane mapa) {
+   		
+	    Node jugadorNode =  getNodeFromGridPane(mapa,  this.juego.getJugador().getPosicionColumna(), this.juego.getJugador().getPosicionFila());    	
+	    mapa.getChildren().remove(jugadorNode);
+	    
+    }
 
+    private void eliminarPosicionDeLavistaSiguiente(GridPane mapa, int x, int y) {
+    	Node siguiente = getNodeFromGridPane(mapa,  this.juego.getJugador().getPosicionColumna()+x, this.juego.getJugador().getPosicionFila()+y);
+    	mapa.getChildren().remove(siguiente);
+    	
+    }
     
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
@@ -152,8 +144,10 @@ public class ControladorDelJuego {
     		System.out.println(this.juego.jugador.getHerramientaEquipada().getDurabilidad());
     		if(!this.juego.jugadorGolpeaEnPosicion(colIndex, rowIndex)){
     			mapa.getChildren().remove(nodoClickeado);    			
+    			this.actualizarInventario();
     		}
     	
+    		
     		
     	}
     	

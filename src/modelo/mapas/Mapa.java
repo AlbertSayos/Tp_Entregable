@@ -89,7 +89,7 @@ public class Mapa{
 
 		Posicion posicion = getPosicionVacia();
 		unJugador.moverAUnaPosicion(posicion);
-		this.terreno.put(posicion, new MaterialJugador());
+		this.terreno.put(posicion, new SinMaterial());
 		return posicion;
 
 	}
@@ -101,7 +101,7 @@ public class Mapa{
 		this.terreno.remove(unJugador.miPosicion());
 		unJugador.moverAUnaPosicion(unaPosicion);
 		System.out.println("jugador se movio");
-		this.terreno.put(unaPosicion, new MaterialJugador());
+		this.terreno.put(unaPosicion, new SinMaterial());
 		return true;
 
 	}
