@@ -13,6 +13,7 @@ public abstract class Material{
 	protected Posicion posicion;
 	public String imagen;
 
+
 	//Metodos:
 	public abstract void recibeGolpeDe(Herramienta unaHerramienta);
 
@@ -38,8 +39,7 @@ public abstract class Material{
 
 	}
 
-
-	public String getImagen(){ return this.imagen; }
+	public String getRutaImagen(){ return this.imagen; }
 
     public abstract Character getIdentificador();
 

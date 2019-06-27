@@ -41,7 +41,7 @@ public class ControladorDelJuego {
             {
                 Posicion posicion = new Posicion(row,col);
                 Material objeto = juego.getMapa().obtenerObjeto(posicion);
-                String nombreImagen = objeto.getImagen();
+                String nombreImagen = objeto.getRutaImagen();
                 //System.out.println(nombreImagen);
                 juegoVista.agregarElemento(nombreImagen, col, row);
             }

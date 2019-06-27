@@ -18,7 +18,7 @@ public class MaterialJugador extends Material{
 
 	@Override
 	public Character getIdentificador() {
-		return 'M';
+		return 'j';
 	}
 
 	@Override

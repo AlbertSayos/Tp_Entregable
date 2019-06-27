@@ -9,11 +9,13 @@ import modelo.herramientas.Pico;
 public class Diamante extends Material{
 	
 	public Diamante(){
+
 		durabilidad = 100;
 		identidad = "4";
 		this.imagen = "diamante.png";
+
 	}
-	
+
 
 	public void recibeGolpeDe(Herramienta unaHerramienta) {
 

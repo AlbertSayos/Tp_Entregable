@@ -34,7 +34,7 @@ public class MapasTest {
 		Jugador jugador = new Jugador();
 		Mapa mapa = new Mapa();
 		mapa.posicionarJugador(jugador, posicion);
-		String id = mapa.obtenerObjeto(mismaPosicion).getImagen();
+		String id = mapa.obtenerObjeto(mismaPosicion).getRutaImagen();
 	
 		Assert.assertTrue(id == "jugador.png");
 
