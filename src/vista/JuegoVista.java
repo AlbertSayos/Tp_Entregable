@@ -21,7 +21,9 @@ public class JuegoVista {
         main = new BorderPane();
         this.mapa = new GridPane();
         mapa.setAlignment(Pos.CENTER);
+
         this.mapa.setStyle("-fx-background-image: url('fondo1.png')");
+
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
         Boton btnInventario = new Boton("Inventario - [E]");
@@ -29,6 +31,7 @@ public class JuegoVista {
         btnInventario.setOnAction(e ->{escenario.mostrar("inventario"); this.controlador.actualizarInventario();});
         btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
+
         menu.setStyle("-fx-background-image: url('fondo1.png')");
         // Botones para golpear
         VBox flechasGolpear = new VBox();
@@ -43,18 +46,10 @@ public class JuegoVista {
         flechasGolpear.setStyle("-fx-background-image: url('fondo1.png')");
         main.setStyle("-fx-background-image: url('fondo1.png')");
         // Main game
+
         main.setTop(menu);
         main.setCenter(mapa);
-        main.setRight(flechasGolpear);
         main.setBottom(selectorHerramientas);
-
-/*
-        btnGolpearIzquierda.setOnAction( e -> controlador.golpearIzquierda());
-        btnGolpearDerecha.setOnAction( e -> controlador.golpearDerecha());
-        btnGolpearAbajo.setOnAction( e -> controlador.golpearAbajo());
-        btnGolpearArriba.setOnAction( e -> controlador.golpearArriba());
-*/
-        // Teclado
         MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa);
         main.setOnKeyPressed(jugadorEventH);
         main.setOnKeyPressed(event -> {
