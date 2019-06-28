@@ -9,6 +9,7 @@ public class PicoDePiedra extends Pico{
 		this.durabilidad = 200f;
 		this.fuerza = 4;
 		this.factorDeDesgaste = 2f/3f;
+		this.identidad = "picoDePiedra";
 
 	}
 	

@@ -8,7 +8,7 @@ public class HachaDeMadera extends Hacha  {
 		this.durabilidad = 100;
 		this.fuerza = 2;
 		this.factorDeDesgaste = 1.0f;
-		this.identificador = "Hacha de madera";
+		this.identidad = "hachaDeMadera";
 	}
 
 

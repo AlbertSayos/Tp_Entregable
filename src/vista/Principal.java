@@ -69,14 +69,14 @@ public class Principal extends Application {
             salir.setOnAction(e -> { System.exit(0); });
             Juego juego = new Juego();
             Jugador jugador = juego.getJugador();
-            ControladorDeInventario controladorDeInventario = new ControladorDeInventario(jugador.getInventario(), inventarioVista, selectorHerramientas);
-            controladorDeInventario.actualizarVista();
-            ControladorDelJuego controladorJuego = new ControladorDelJuego(juegoVista, juego, controladorDeInventario);
-            controladorJuego.actualizarVista();
+            //ControladorDeInventario controladorDeInventario = new ControladorDeInventario(jugador.getInventario(), inventarioVista, selectorHerramientas);
+            //controladorDeInventario.actualizarVista();
+            //ControladorDelJuego controladorJuego = new ControladorDelJuego(juegoVista, juego, controladorDeInventario);
+            //controladorJuego.actualizarVista();
             selectorHerramientas.setOnMouseClicked(e -> {
                 Integer posicion = selectorHerramientas.getPosicion(e);
                 if (posicion != null) {
-                    jugador.cambiarHerramienta(posicion);
+                    //jugador.cambiarHerramienta(posicion);
                 }
             });	
             

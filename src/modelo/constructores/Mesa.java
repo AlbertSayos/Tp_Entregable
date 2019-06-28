@@ -31,5 +31,10 @@ public class Mesa {
 		return true;
 	}
 	
-
+	public Material quitarMaterialEnPosicion(int unaPosicion) {
+		Material materialADevolver = mesa[unaPosicion];
+		mesa[unaPosicion] = new SinMaterial();
+		return materialADevolver;
+	}
+	
 }

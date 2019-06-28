@@ -22,8 +22,8 @@ public class ControladorDeInventario {
 
     public ControladorDeInventario(Inventario inventario, InventarioVista inventarioVista, SelectorDeHerramientas selectorHerramientas) {
         System.out.println("Iniciando constructor de Controlador de inventario");
-        this.materiales = inventario.getMateriales();
-        this.herramientas = inventario.getHerramientas();
+        //this.materiales = inventario.getMateriales();
+        //this.herramientas = inventario.getHerramientas();
         this.selectorHerramientas = selectorHerramientas;
         this.inventarioVista = inventarioVista;
         inicializarHash();

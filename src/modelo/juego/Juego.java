@@ -1,6 +1,10 @@
 package modelo.juego;
 
 import modelo.jugador.*;
+
+import java.util.List;
+
+import modelo.constructores.MesaDeCrafteo;
 import modelo.excepciones.*;
 import modelo.mapas.Mapa;
 import modelo.materiales.*;
@@ -14,7 +18,7 @@ public class Juego {
     public Mapa mapa;
     public Jugador jugador;
     public MovimientosJugador movs;
-    
+    protected MesaDeCrafteo mesaDeCrafteo;
     public Juego(){
 
         iniciar();
@@ -28,6 +32,7 @@ public class Juego {
 
         this.mapa = new Mapa();
         this.jugador = this.cargarJugador();
+        this.mesaDeCrafteo = new MesaDeCrafteo();
         cargarTerreno();
 
     }
@@ -132,5 +137,21 @@ public class Juego {
     	return true;
     }
 
-
+    public void agregarMaterialDeJugadorALaMesaDeCrafteo(int filaDeInventario, int columnaDeInventario, int posicionDeMesa) {
+    	Material unMaterial = this.jugador.quitarMaterialDelInventario(filaDeInventario, columnaDeInventario);
+    	mesaDeCrafteo.agregarMaterialEnPosicion(unMaterial, posicionDeMesa);
+    }
+    
+    public void agregarMaterialDeLaMesaDeCrafteoAlJugador(int filaDeInventario, int columnaDeInventario, int posicionDeMesa) {
+    	Material unMaterial = this.mesaDeCrafteo.quitarMaterialEnPosicion(posicionDeMesa);
+    	this.jugador.agregarMaterialAInventarioEnPosicion(unMaterial, filaDeInventario, columnaDeInventario);
+    	
+    }
+    
+    public void agregarTodosLosMaterialesDeLaMesaAlinventario() {
+    	List<Material> materiales = this.mesaDeCrafteo.quitarTodosLosMateriales();
+    	for(int posicion = 0; posicion < materiales.size();posicion++) {
+    		this.jugador.agregarMaterialAlInventario(materiales.get(posicion));
+    	}
+    }
 }

@@ -29,4 +29,20 @@ public class MesaDeCrafteo{
 		}
 		return null;
 	}
+	
+	public Material quitarMaterialEnPosicion(int unaPosicion) {
+		return mesa.quitarMaterialEnPosicion(unaPosicion);
+	}
+	
+	public List<Material> quitarTodosLosMateriales(){
+		List<Material> materiales = new ArrayList<Material>();
+		for(int unaPosicion = 0; unaPosicion < cantidad;unaPosicion++) {
+			Material unMaterial = this.quitarMaterialEnPosicion(unaPosicion);
+			Material otroMaterial = new SinMaterial();
+			if(!(unMaterial.esEquivalante(otroMaterial)) ) {
+				materiales.add(unMaterial);
+			}
+		}
+		return materiales;
+	}
 }
