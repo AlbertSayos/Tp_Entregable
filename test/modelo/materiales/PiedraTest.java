@@ -5,10 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import junit.framework.Assert;
-import modelo.herramientas.Hacha;
-import modelo.herramientas.HachaDeMadera;
-import modelo.herramientas.HachaDeMetal;
-import modelo.herramientas.HachaDePiedra;
+import modelo.herramientas.*;
 
 public class PiedraTest {
 	
@@ -71,5 +68,34 @@ public class PiedraTest {
 		hachaDeMetal.usar(piedra);	
 		
 		Assert.assertEquals(durabilidadIni , piedra.getDurabilidad());
+	}
+	
+	@Test
+	public void picoDePiedraGolpeaPiedraHastaDestruirlo() {
+		Pico picoDePiedra = new PicoDePiedra();
+		Material piedra = new Piedra();
+		
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		picoDePiedra.usar(piedra);
+		System.out.println(piedra.getDurabilidad());
+		
+		Assert.assertTrue(piedra.getDurabilidad() == 0);
 	}
 }

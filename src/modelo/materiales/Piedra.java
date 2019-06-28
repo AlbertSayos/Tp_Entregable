@@ -1,5 +1,6 @@
 package modelo.materiales;
 
+import modelo.excepciones.MaterialRotoException;
 import modelo.herramientas.*;
 
 public class Piedra extends Material {
@@ -12,6 +13,7 @@ public class Piedra extends Material {
 	
 	public void recibeGolpeDe(Herramienta unaHerramienta) {
 		unaHerramienta.golpear(this);
+		if(this.estaDestruido()) throw new MaterialRotoException();
 	}
 
 	@Override

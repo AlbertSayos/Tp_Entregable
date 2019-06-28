@@ -26,20 +26,5 @@ public class PicoDeMadera extends Pico{
 
 	}
 
-	@Override
-	public String getRutaImagen() {
-		return "picoDeMadera.png";
-	}
-
-	@Override
-	public void desgastar(int danio) {
-
-	}
-
-	@Override
-	public void usarContra(Material materialARecolectar) {
-
-	}
-
 
 }

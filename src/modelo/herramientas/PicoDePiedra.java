@@ -11,12 +11,6 @@ public class PicoDePiedra extends Pico{
 		this.factorDeDesgaste = 2f/3f;
 
 	}
-/*
-	@Override
-	public Boolean validar(Material unMaterial){
-		return (unMaterial instanceof Piedra || unMaterial instanceof Metal) ;
-	}
-	*/
 	
 	public void golpear(Piedra unaPiedra) {
 
@@ -35,21 +29,6 @@ public class PicoDePiedra extends Pico{
 	public void golpear(Diamante unaDiamante) {
 
 		this.desgastarse();
-
-	}
-
-	@Override
-	public String getRutaImagen() {
-		return "picoDePiedra.png";
-	}
-
-	@Override
-	public void desgastar(int danio) {
-
-	}
-
-	@Override
-	public void usarContra(Material materialARecolectar) {
 
 	}
 

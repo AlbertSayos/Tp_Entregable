@@ -1,6 +1,5 @@
 package modelo.herramientas;
 
-import modelo.materiales.Material;
 
 public class HachaDePiedra extends Hacha {
 	
@@ -10,19 +9,6 @@ public class HachaDePiedra extends Hacha {
 		this.factorDeDesgaste = 1;
 	}
 
-	@Override
-	public String getRutaImagen() {
-		return "hachaDePiedra.png";
-	}
 
-	@Override
-	public void desgastar(int danio) {
-
-	}
-
-	@Override
-	public void usarContra(Material materialARecolectar) {
-
-	}
 
 }

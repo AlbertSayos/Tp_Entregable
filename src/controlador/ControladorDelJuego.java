@@ -1,23 +1,18 @@
 package controlador;
 
-import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import modelo.juego.Juego;
 import modelo.posicion.Posicion;
 import vista.JuegoVista;
 import modelo.materiales.*;
-import controlador.*;
 
 
 public class ControladorDelJuego {
 
     private Juego juego;
     private JuegoVista juegoVista;
-    private int jugadorPosX, jugadorPosY;
     private ControladorDeInventario controladorDeInventario;
 
 
@@ -25,11 +20,8 @@ public class ControladorDelJuego {
 
         this.controladorDeInventario = controladorDeInventario;
         this.juego = juego;
-        //this.juego.iniciar();
         this.juegoVista = juegoVista;
         juegoVista.setControlador(this);
-        this.jugadorPosX = 0;
-        this.jugadorPosY = 0;
 
     }
     
@@ -136,7 +128,7 @@ public class ControladorDelJuego {
     		int colIndex = GridPane.getColumnIndex(nodoClickeado);
     		int rowIndex = GridPane.getRowIndex(nodoClickeado);
     		System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
-    		System.out.println(this.juego.jugador.getHerramientaEquipada().getDurabilidad());
+    		//System.out.println(this.juego.jugador.getHerramientaEquipada().getDurabilidad());
     		if(!this.juego.jugadorGolpeaEnPosicion(colIndex, rowIndex)){
     			mapa.getChildren().remove(nodoClickeado);    			
     			this.actualizarInventario();

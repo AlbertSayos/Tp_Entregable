@@ -49,14 +49,14 @@ public class Inventario {
 
 
     public Material seleccionarMaterial(int posicion) {
-        //No se puede acceder a un indice fuera del tamaño de materiales.
+        //No se puede acceder a un indice fuera del tamanio de materiales.
         return materiales.get(posicion);
 
     }
 
 
     public Herramienta seleccionarHerramienta(int posicion) {
-        //No se puede acceder a un indice fuera del tamaño de herramientas.
+        //No se puede acceder a un indice fuera del tamanio de herramientas.
         this.posicionHerramientaSeleccionada = posicion;
         return herramientas.get(posicion);
 

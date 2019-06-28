@@ -1,10 +1,7 @@
 package modelo.materiales;
 
 import modelo.excepciones.MaterialRotoException;
-import modelo.herramientas.Golpe;
-import modelo.herramientas.Hacha;
-import modelo.herramientas.Herramienta;
-import modelo.herramientas.Pico;
+import modelo.herramientas.*;
 
 public class Madera extends Material{
 	

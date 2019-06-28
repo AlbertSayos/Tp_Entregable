@@ -2,10 +2,9 @@ package controlador;
 
 
 import modelo.constructores.Mesa;
-import modelo.herramientas.Herramienta;
+import modelo.herramientas.*;
 import modelo.jugador.Inventario;
 import modelo.materiales.*;
-import modelo.materiales.Material;
 import vista.InventarioVista;
 import vista.SelectorDeHerramientas;
 import java.util.ArrayList;
@@ -41,7 +40,7 @@ public class ControladorDeInventario {
             if (i % 9 == 0) {
                 j++;
             }
-            inventarioVista.agregar(materialesHash.get(this.materiales.get(i).getIdentificador())+".png", i % 9, j);
+            inventarioVista.agregar(rutaDeMaterial(this.materiales.get(i)), i % 9, j);
             System.out.println("Se agregaron los materiales al inventario vista");
         }
 
@@ -49,10 +48,33 @@ public class ControladorDeInventario {
         System.out.println("Selector de herramientas limpio");
         for (int i = 0; i < herramientas.size(); i++) {
             System.out.println("Agregando herramientas al selector");
-            System.out.println("El identificador de la herramienta es: "+herramientas.get(i).getIdentificador());
-            //this.selectorHerramientas.agregar(herramientas.get(i).getRutaImagen(), i);
+            //System.out.println("El identificador de la herramienta es: "+herramientas.get(i).getIdentificador());
+            this.selectorHerramientas.agregar(rutaDeHerramienta(herramientas.get(i)), i);
         }
         System.out.println("Saliendo de vista de controlador de inventario");
+    }
+    
+    private String rutaDeHerramienta(Herramienta herramienta) {
+    	String ruta = " ";
+    	if(herramienta.getClass() == PicoDeMadera.class) ruta = "picoDeMadera.png";
+    	if(herramienta.getClass() == PicoDePiedra.class) ruta = "picoDePiedra.png";
+    	if(herramienta.getClass() == PicoFino.class) ruta = "picoFino.png";
+    	if(herramienta.getClass() == PicoDeMetal.class) ruta = "picoDeMetal.png";
+    	if(herramienta.getClass() == HachaDeMadera.class) ruta = "HachaDeMadera.png";
+    	if(herramienta.getClass() == HachaDePiedra.class) ruta = "HachaDePiedra.png";
+    	if(herramienta.getClass() == HachaDeMetal.class) ruta = "HachaDeMetal.png";
+    	
+    	return ruta;
+    }
+    
+    private String rutaDeMaterial(Material material) {
+    	String ruta = " ";
+    	if(material.getClass() == Madera.class) ruta = "madera.png";
+    	if(material.getClass() == Metal.class) ruta = "metal.png";
+    	if(material.getClass() == Piedra.class) ruta = "piedra.png";
+    	if(material.getClass() == Diamante.class) ruta = "diamante.png";
+    	
+    	return ruta;
     }
 
     private void inicializarHash() {

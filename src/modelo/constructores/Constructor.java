@@ -1,9 +1,7 @@
 package modelo.constructores;
 
-import modelo.excepciones.DispocisionNoExisteException;
-import modelo.herramientas.Herramienta;
-
 import java.util.HashMap;
+
 
 public class Constructor {
 

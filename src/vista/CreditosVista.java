@@ -18,7 +18,7 @@ public class CreditosVista {
         this.escenario = escenario;
         pane = new BorderPane();
 
-        this.pane.setStyle("-fx-background-image: url('fondo.png')");
+        this.pane.setStyle("-fx-background-image: url('creditos.jpg')");
 
         // Top
         HBox hBox = new HBox();
@@ -31,7 +31,7 @@ public class CreditosVista {
         // Center
         VBox contenedor = new VBox();
         contenedor.setAlignment(Pos.TOP_CENTER);
-        ImageView logo = new ImageView(new Image("logoCreditos.png", 400, 0, true, true));
+        ImageView logo = new ImageView(new Image("logocreditos.png", 400, 0, true, true));
         StackPane r = new StackPane();
         r.setId("logo-creditos");
         r.setMaxHeight(60);
@@ -40,9 +40,9 @@ public class CreditosVista {
         Text tituloCred = new Text("Integrantes del proyecto:");
         Text vacio = new Text("");
         Text nombre1 = new Text("Ledesma, Dylan.");
-        Text nombre2 = new Text("Albert");
-        Text nombre3 = new Text("Joseph");
-        Text nombre4 = new Text("Rocio");
+        Text nombre2 = new Text("Sayos, Albert");
+        Text nombre3 = new Text("Vilca Vargas, Joseph");
+        Text nombre4 = new Text("Arrua, Rocio");
         tituloCred.setId("titulo-creditos");
         vacio.setId("vacio");
         nombre1.setId("nombre");

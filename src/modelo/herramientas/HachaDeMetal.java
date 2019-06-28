@@ -1,8 +1,6 @@
 package modelo.herramientas;
 
 
-import modelo.materiales.Material;
-
 public class HachaDeMetal extends Hacha  {
 	
 	public HachaDeMetal() {
@@ -12,20 +10,6 @@ public class HachaDeMetal extends Hacha  {
 	}
 
 
-	@Override
-	public String getRutaImagen() {
-		return "hachaDeMetal.png";
-	}
-
-	@Override
-	public void desgastar(int danio) {
-
-	}
-
-	@Override
-	public void usarContra(Material materialARecolectar) {
-
-	}
 
 
 }

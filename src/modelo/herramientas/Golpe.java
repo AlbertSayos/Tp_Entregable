@@ -3,7 +3,7 @@ package modelo.herramientas;
 import modelo.materiales.*;
 
 public abstract class Golpe {
-
+	/*
     int fuerza;
 
     public Golpe(int fuerza){
@@ -32,4 +32,6 @@ public abstract class Golpe {
     public void golpear(Diamante diamante){
 
     }
+
+	*/
 }

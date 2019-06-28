@@ -1,9 +1,6 @@
 package modelo.herramientas;
 
-import modelo.materiales.Diamante;
-import modelo.materiales.Material;
-import modelo.materiales.Metal;
-import modelo.materiales.Piedra;
+import modelo.materiales.*;
 
 public class PicoDeMetal extends Pico{
 	
@@ -35,20 +32,6 @@ public class PicoDeMetal extends Pico{
 		this.desgastarse();
 	}
 
-	@Override
-	public String getRutaImagen() {
-		return "picoDeMetal.png";
-	}
-
-	@Override
-	public void desgastar(int danio) {
-
-	}
-
-	@Override
-	public void usarContra(Material materialARecolectar) {
-
-	}
 
 
 }

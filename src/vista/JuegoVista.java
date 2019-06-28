@@ -21,7 +21,7 @@ public class JuegoVista {
         main = new BorderPane();
         this.mapa = new GridPane();
         mapa.setAlignment(Pos.CENTER);
-        this.mapa.setStyle("-fx-background-image: url('fondo.png')");
+        this.mapa.setStyle("-fx-background-image: url('fondo1.png')");
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
         Boton btnInventario = new Boton("Inventario - [E]");
@@ -29,7 +29,7 @@ public class JuegoVista {
         btnInventario.setOnAction(e ->{escenario.mostrar("inventario"); this.controlador.actualizarInventario();});
         btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
-        menu.setStyle("-fx-background-image: url('fondo.png')");
+        menu.setStyle("-fx-background-image: url('fondo1.png')");
         // Botones para golpear
         VBox flechasGolpear = new VBox();
         flechasGolpear.setAlignment(Pos.BOTTOM_CENTER);
@@ -40,8 +40,8 @@ public class JuegoVista {
         flechasGolpearAbajo.getChildren().addAll(btnGolpearIzquierda,btnGolpearAbajo,btnGolpearDerecha);
         Boton btnGolpearArriba = new Boton("▲");
         flechasGolpear.getChildren().addAll(btnGolpearArriba, flechasGolpearAbajo);
-        flechasGolpear.setStyle("-fx-background-image: url('fondo.png')");
-        main.setStyle("-fx-background-image: url('fondo.png')");
+        flechasGolpear.setStyle("-fx-background-image: url('fondo1.png')");
+        main.setStyle("-fx-background-image: url('fondo1.png')");
         // Main game
         main.setTop(menu);
         main.setCenter(mapa);

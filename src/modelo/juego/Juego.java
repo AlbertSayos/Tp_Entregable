@@ -58,10 +58,8 @@ public class Juego {
     public void cargarMadera(){
 
         for(int i = 0; i <= 8; i++){
-
             Madera madera = new Madera();
             Posicion posicion = this.mapa.posicionarMaterial(madera);
-
         }
 
     }
@@ -70,10 +68,8 @@ public class Juego {
     public void cargarPiedra(){
 
         for(int i = 0; i <= 5; i++){
-
             Piedra piedra = new Piedra();
             Posicion posicion = this.mapa.posicionarMaterial(piedra);
-
         }
 
     }
@@ -118,7 +114,11 @@ public class Juego {
     	
     	try{
     		this.jugador.golpearMaterial(materialObtenido, posicion);
-    	} 
+    	}
+    	catch(JugarSinHerramientaEquipadaException ex) {
+    		System.out.println("herramienta rota");
+    		return true;
+    	}
     	catch (GolpeFueraDeRangoException ex) {
     		System.out.println("Fuerea de rango");
     		return true;
@@ -128,6 +128,7 @@ public class Juego {
     		System.out.println("mateiral roto");
     		return false;
     	}
+    	
     	return true;
     }
 

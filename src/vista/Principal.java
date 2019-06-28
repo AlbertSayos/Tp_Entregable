@@ -4,7 +4,6 @@ import controlador.Escenario;
 import controlador.ControladorDeInventario;
 import controlador.ControladorDelJuego;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,8 +12,7 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.juego.Juego;
-import modelo.jugador.Jugador;
-
+import modelo.jugador.Jugador; 
 
 public class Principal extends Application {
 
@@ -25,8 +23,8 @@ public class Principal extends Application {
 
 
     public void start(Stage primaryStage) {
-
         loadMainMenu(primaryStage);
+        
 
     }
 
@@ -65,7 +63,7 @@ public class Principal extends Application {
             escenario.set("creditos", creditosVista.getPane());
             comenzar.setOnAction(e -> { escenario.mostrar("juego"); });
             creditos.setOnAction(e -> { escenario.mostrar("creditos"); });
-            panel.setStyle("-fx-background-image: url('entrada.png')");
+            panel.setStyle("-fx-background-image: url('entrada4.jpg')");
             salir.setOnAction(e -> { System.exit(0); });
             Juego juego = new Juego();
             Jugador jugador = juego.getJugador();
@@ -76,7 +74,7 @@ public class Principal extends Application {
             selectorHerramientas.setOnMouseClicked(e -> {
                 Integer posicion = selectorHerramientas.getPosicion(e);
                 if (posicion != null) {
-                    jugador.seleccionarHerramienta(posicion);
+                    jugador.cambiarHerramienta(posicion);
                 }
             });	
             

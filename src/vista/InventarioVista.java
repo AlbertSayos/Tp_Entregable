@@ -1,9 +1,6 @@
 package vista;
 
-import modelo.constructores.Mesa;
-import modelo.excepciones.DispocisionNoExisteException;
 import javafx.scene.*;
-
 import controlador.Escenario;
 import controlador.ControladorDeInventario;
 import javafx.geometry.Pos;
@@ -12,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
-import modelo.herramientas.Herramienta;
 
 public class InventarioVista {
 
@@ -99,12 +95,7 @@ public class InventarioVista {
 
         Boton crear = new Boton("Crear");
         crear.setOnAction(e -> {
-            try {
-                /*Herramienta nuevaHerramienta = controlador.crearHerramienta();
-                ImageView herramienta = getImagen(nuevaHerramienta.getIdentificador(), 40);
-                contenedor.getChildren().add(herramienta);*/
-            } catch (DispocisionNoExisteException ex) {
-            }
+            
         });
 
         contenedor.getChildren().addAll(mesa, flecha,crear , resultado);

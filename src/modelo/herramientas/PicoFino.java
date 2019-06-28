@@ -13,19 +13,7 @@ public class PicoFino extends Pico{
 		
 	}
 	
-	/*
-	@Override
-	public void usar(Material unMaterial) {
-		
-		if(this.validar(unMaterial)){ 
-			unMaterial.reducirDurabilidad(this.getFuerza());
-			this.desgastarse();
-			
-		}
-		
-	}
-	*/
-	
+
 	@Override
 	public void desgastarse() {
 		durabilidad -= durabilidad*factorDeDesgaste;
@@ -33,15 +21,13 @@ public class PicoFino extends Pico{
 											// FALTA IMPLEMENTAR ESO
 	}
 
-	/*
-	public Boolean validar(Material unMaterial){
-		return (unMaterial instanceof Diamante) ;
-	}
-	*/
+
 
 	public void golpear(Madera unaMadera) { }
 
-	public void golpear(Piedra unaPiedra) { }
+	public void golpear(Piedra unaPiedra) {
+		unaPiedra.reducirDurabilidad(fuerza);
+	}
 	
 	public void golpear(Metal unMetal) { }
 
@@ -51,20 +37,4 @@ public class PicoFino extends Pico{
 		this.desgastarse();
 
 	}
-
-	@Override
-	public String getRutaImagen() {
-		return "picoFino.png";
-	}
-
-	@Override
-	public void desgastar(int danio) {
-
-	}
-
-	@Override
-	public void usarContra(Material materialARecolectar) {
-
-	}
-
 }

@@ -37,26 +37,14 @@ public class Jugador {
 		return posicionActual;
 	}
 
+    public Posicion miArriba() {
 
-	public String getImagen() {
-
-		return this.imagen;
-
-	}
-
-
-    public Posicion moverArriba() {
-
-    	this.posicionActual = posicionActual.getPosicionArriba();
-    	return this.posicionActual;
+    	return this.posicionActual.getPosicionArriba();
 
     }
 
 
 	public Posicion miDerecha() {
-
-
-		//this.posicionActual = posicionActual.getPosicionDerecha();
 		return this.posicionActual.getPosicionDerecha();
 
 	}
@@ -68,10 +56,10 @@ public class Jugador {
 	}
 
 
-	public Posicion moverAbajo() {
+	public Posicion miAbajo() {
 
-		this.posicionActual = posicionActual.getPosicionAbajo();
-		return this.posicionActual;
+		return this.posicionActual.getPosicionAbajo();
+		
 
 	}
 
@@ -99,10 +87,12 @@ public class Jugador {
 			this.herramientaEquipada.usar(material);
 		} catch (MaterialRotoException ex) {
 			this.inventario.agregarMaterial(material);
-			if(this.herramientaEquipada.estaRota()) {
-				this.herramientaEquipada = null;
-			}
+			
 			throw ex;
+		}
+		if(this.herramientaEquipada.estaRota()) {
+			this.herramientaEquipada = null;
+			throw new JugarSinHerramientaEquipadaException();
 		}
 	}
 
@@ -131,7 +121,6 @@ public class Jugador {
 		this.inventario.agregarHerramienta(new HachaDeMadera());
 		this.estaPosicionado = false;
 		this.herramientaSeleccionada = new HachaDeMadera();
-		this.imagen = "jugador.png";
 
 	}
 
@@ -171,9 +160,9 @@ public class Jugador {
 	}
 
 
-	public void seleccionarHerramienta(int posicion) {
+	public void cambiarHerramienta(int posicion) {
 
-		this.herramientaSeleccionada = this.inventario.seleccionarHerramienta(posicion);
+		this.herramientaEquipada = this.inventario.seleccionarHerramienta(posicion);
 
 	}
 
@@ -193,12 +182,14 @@ public class Jugador {
 
 	public boolean puedeGolpear(Posicion posicion){
 
-        Posicion derecha, izquierda;
+        Posicion derecha, izquierda, arriba, abajo;
 
         derecha = miDerecha();
         izquierda = miIzquierda();
+        arriba = miArriba();
+        abajo = miAbajo();
 
-        return posicion.equals(derecha) || posicion.equals(izquierda); 
+        return posicion.equals(derecha) || posicion.equals(izquierda) || posicion.equals(arriba) || posicion.equals(abajo); 
 
     }
 

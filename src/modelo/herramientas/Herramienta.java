@@ -1,8 +1,7 @@
 package modelo.herramientas;
 
-
-import modelo.excepciones.HerramientaRotaException;
 import modelo.materiales.*;
+import modelo.excepciones.*;
 
 
 public abstract class Herramienta {
@@ -17,9 +16,7 @@ public abstract class Herramienta {
     public String getIdentificador(){return this.identificador;}
 
     public abstract void desgastarse();
-/*
-    public abstract Boolean validar(Material unMaterial);
-*/
+
     public int getFuerza(){
 
         return this.fuerza;
@@ -33,6 +30,7 @@ public abstract class Herramienta {
     
     public void usar(Material unMaterial) {
         unMaterial.recibeGolpeDe(this);
+        if(unMaterial.estaDestruido()) throw new MaterialRotoException();
 
     }
 
@@ -49,14 +47,9 @@ public abstract class Herramienta {
         return this.getClass() == otraHerramienta.getClass();
 
     }
-
-    public abstract void desgastar(int danio);
-
-    public abstract void usarContra(Material materialARecolectar);
     
     public boolean estaRota() {
     	return (durabilidad <=0.0);
     }
     
-    public abstract String getRutaImagen();
 }

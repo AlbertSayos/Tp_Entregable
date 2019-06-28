@@ -4,11 +4,7 @@ import modelo.materiales.*;
 
 public abstract class Pico extends Herramienta{
 	
-	/*
-	public Boolean validar(Material unMaterial){
-		return (unMaterial instanceof Piedra) ;
-	}
-	*/
+	
 	
 	@Override
 	public void desgastarse() {

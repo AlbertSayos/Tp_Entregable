@@ -1,10 +1,8 @@
 package modelo.materiales;
 
-import javafx.scene.image.Image;
 import modelo.herramientas.Golpe;
-import modelo.herramientas.Hacha;
-import modelo.herramientas.Herramienta;
-import modelo.herramientas.Pico;
+import modelo.excepciones.MaterialRotoException;
+import modelo.herramientas.*;
 
 public class Diamante extends Material{
 	
@@ -12,7 +10,7 @@ public class Diamante extends Material{
 
 		durabilidad = 100;
 		identidad = "4";
-		//this.imagen = "diamante.png";
+		
 
 	}
 
@@ -20,6 +18,7 @@ public class Diamante extends Material{
 	public void recibeGolpeDe(Herramienta unaHerramienta) {
 
 		unaHerramienta.golpear(this);
+		if(this.estaDestruido()) throw new MaterialRotoException();
 
 	}
 
