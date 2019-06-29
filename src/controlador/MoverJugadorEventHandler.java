@@ -10,16 +10,21 @@ public class MoverJugadorEventHandler implements EventHandler<KeyEvent>{
 
     JuegoVista juegoVista;
     GridPane mapa;
+    Escenario escenario;
 
-    public MoverJugadorEventHandler(JuegoVista juegoVista, GridPane mapa) {
+    public MoverJugadorEventHandler(JuegoVista juegoVista, GridPane mapa, Escenario escenario) {
         this.juegoVista = juegoVista;
         this.mapa = mapa;
+        this.escenario = escenario;
     }
 
 
     @Override
     public void handle(KeyEvent event) {
-
+    	if (event.getCode() == KeyCode.E) {
+    		this.juegoVista.inventario().controlador().actualizarVistaInventario();
+            escenario.mostrar("inventario");
+        }
         if(event.getCode() == KeyCode.W) {
             this.juegoVista.controlador().moverArriba(mapa);
         }
@@ -32,7 +37,9 @@ public class MoverJugadorEventHandler implements EventHandler<KeyEvent>{
         if (event.getCode() == KeyCode.A) {
             this.juegoVista.controlador().moverIzquierda(mapa);
         }
-
+        if (event.getCode() == KeyCode.ESCAPE) {
+            escenario.mostrar("entrada");
+        }
         //event.consume();
 
     }

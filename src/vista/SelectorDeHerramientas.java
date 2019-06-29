@@ -13,15 +13,7 @@ public class SelectorDeHerramientas extends GridPane {
     public SelectorDeHerramientas() {
         this.setAlignment(Pos.TOP_CENTER);
         for (int i = 0; i < 9; i++)
-            this.agregarCasilla(i);
-    }
-
-    private void agregarCasilla(int pos) {
-        StackPane stackBack = new StackPane();
-        ImageView imageView = new ImageView(new Image(("casilla.png"), 48, 0, true, true));
-        stackBack.getChildren().add(imageView);
-        this.add(stackBack, pos, 0);
-        stackBack.setId("casilla");
+            this.add(new Casilla(),i , 0);
     }
 
     public void agregar(String elemento, int pos) {
@@ -39,7 +31,7 @@ public class SelectorDeHerramientas extends GridPane {
     public void limpiar() {
         this.getChildren().clear();
         for (int i = 0; i < 9; i++)
-            this.agregarCasilla(i);
+        	this.add(new Casilla(),i , 0);
     }
 
 }

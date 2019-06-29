@@ -53,11 +53,12 @@ public class Inventario {
     
     public void agregarMaterial(Material material) {
     	//Material sinMaterial = new SinMaterial();
-    	for(int fila = 0;fila < factorFila;fila++) {
-    		for(int columna = 0; columna < factorColumna;columna++) {
+    	outerloop:
+    	for(int columna = 0; columna < factorColumna;columna++) {
+    		for(int fila = 0;fila < factorFila;fila++) {	
     			if(sinMaterial.esEquivalante(materiales[fila][columna])) {
     				materiales[fila][columna] = material;
-    				break;
+    				break outerloop;
     			}
     		}
     	}

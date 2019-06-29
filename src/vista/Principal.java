@@ -88,12 +88,14 @@ public class Principal extends Application {
 
             selectorHerramientas.setOnMouseClicked(e -> {
                 Integer posicion = selectorHerramientas.getPosicion(e);
+                
                 if (posicion != null) {
                     //jugador.cambiarHerramienta(posicion);
                 }
             });	
             
-            
+            selectorHerramientas.agregar(jugador.getHerramientaEquipada().getClass().getSimpleName()+".png", 0);
+           
             primaryStage.show();
         }
 

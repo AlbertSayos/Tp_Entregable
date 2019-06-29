@@ -62,7 +62,7 @@ public class Juego {
 
     public void cargarMadera(){
 
-        for(int i = 0; i <= 8; i++){
+        for(int i = 0; i <= 11; i++){
             Madera madera = new Madera();
             Posicion posicion = this.mapa.posicionarMaterial(madera);
         }

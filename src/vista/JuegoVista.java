@@ -37,46 +37,17 @@ public class JuegoVista {
         menu.getChildren().addAll(btnMenu, btnInventario);
 
         menu.setStyle("-fx-background-image: url('fondo1.png')");
-        // Botones para golpear
-        VBox flechasGolpear = new VBox();
-        flechasGolpear.setAlignment(Pos.BOTTOM_CENTER);
-        HBox flechasGolpearAbajo = new HBox();
-        Boton btnGolpearIzquierda = new Boton("◄");
-        Boton btnGolpearDerecha = new Boton("►");
-        Boton btnGolpearAbajo = new Boton("▼");
-        flechasGolpearAbajo.getChildren().addAll(btnGolpearIzquierda,btnGolpearAbajo,btnGolpearDerecha);
-        Boton btnGolpearArriba = new Boton("▲");
-        flechasGolpear.getChildren().addAll(btnGolpearArriba, flechasGolpearAbajo);
-        flechasGolpear.setStyle("-fx-background-image: url('fondo1.png')");
+       
         main.setStyle("-fx-background-image: url('fondo1.png')");
         // Main game
 
         main.setTop(menu);
         main.setCenter(mapa);
         main.setBottom(selectorHerramientas);
-        MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa);
+        MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa, escenario);
         main.setOnKeyPressed(jugadorEventH);
-        main.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.E) {
-                escenario.mostrar("inventario");
-            }
-            if (event.getCode() == KeyCode.ESCAPE) {
-                escenario.mostrar("entrada");
-            }
-            if (event.getCode() == KeyCode.W) {
-                controlador.moverArriba(mapa);
-            }
-            if (event.getCode() == KeyCode.A) {
-                controlador.moverIzquierda(mapa);
-            }
-            if (event.getCode() == KeyCode.S) {
-                controlador.moverAbajo(mapa);
-            }
-            if (event.getCode() == KeyCode.D) {
-                controlador.moverDerecha(mapa);
-            }
-            
-        });
+  
+        
 
         ClickMaterialJuegoEventHandler clickMaterialH = new ClickMaterialJuegoEventHandler(this, this.mapa);
         mapa.setOnMouseClicked(clickMaterialH);
@@ -90,7 +61,7 @@ public class JuegoVista {
 
     public void agregarElemento(String nombreImagen, int fila, int col) {
 
-        System.out.println("La imagen que se esta agregando en mapa es: "+nombreImagen);
+        //System.out.println("La imagen que se esta agregando en mapa es: "+nombreImagen);
         ImageView img = new ImageView(new Image(nombreImagen, 46, 0, true, true));
         mapa.add(img, col, fila);
 
@@ -100,6 +71,10 @@ public class JuegoVista {
 
     public void setControlador(ControladorDelJuego controlador) {
         this.controlador = controlador;
+    }
+    
+    public InventarioVista inventario() {
+    	return this.inventario;
     }
     
     public ControladorDelJuego controlador(){

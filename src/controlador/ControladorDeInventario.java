@@ -12,15 +12,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.scene.layout.*;
 import javafx.scene.*;
+import vista.*;
 
 public class ControladorDeInventario {
 
     private SelectorDeHerramientas selectorHerramientas;
-    private Material[][] materiales;
     private ArrayList<Herramienta> herramientas;
     private InventarioVista inventarioVista;
     private HashMap<Character, String> materialesHash = new HashMap<>();
-    private Mesa mesaCrafteo = new Mesa(9);
     private Juego juego;
 
     public ControladorDeInventario(Juego juego, InventarioVista inventarioVista) {
@@ -37,41 +36,9 @@ public class ControladorDeInventario {
     }
     
 
-    /*public void actualizarVista() {
-        System.out.println("Actualizando vista de controlador de inventario");
-        this.inventarioVista.limpiar();
-        this.mesaCrafteo = new Mesa(9);
-        System.out.println("inventarioVista limpio");
-        int j = -1;
-        for (int i = 0; i < this.materiales.size(); i++) {
-            if (i % 9 == 0) {
-                j++;
-            }
-            inventarioVista.agregar(rutaDeMaterial(this.materiales.get(i)), i % 9, j);
-            System.out.println("Se agregaron los materiales al inventario vista");
-        }
-
-        this.selectorHerramientas.limpiar();
-        System.out.println("Selector de herramientas limpio");
-        for (int i = 0; i < herramientas.size(); i++) {
-            System.out.println("Agregando herramientas al selector");
-            //System.out.println("El identificador de la herramienta es: "+herramientas.get(i).getIdentificador());
-            this.selectorHerramientas.agregar(rutaDeHerramienta(herramientas.get(i)), i);
-        }
-        System.out.println("Saliendo de vista de controlador de inventario");
-    }
-    */
     private String rutaDeHerramienta(Herramienta herramienta) {
-    	String ruta = " ";
-    	if(herramienta.getClass() == PicoDeMadera.class) ruta = "picoDeMadera.png";
-    	if(herramienta.getClass() == PicoDePiedra.class) ruta = "picoDePiedra.png";
-    	if(herramienta.getClass() == PicoFino.class) ruta = "picoFino.png";
-    	if(herramienta.getClass() == PicoDeMetal.class) ruta = "picoDeMetal.png";
-    	if(herramienta.getClass() == HachaDeMadera.class) ruta = "HachaDeMadera.png";
-    	if(herramienta.getClass() == HachaDePiedra.class) ruta = "HachaDePiedra.png";
-    	if(herramienta.getClass() == HachaDeMetal.class) ruta = "HachaDeMetal.png";
-    	
-    	return ruta;
+
+    	return herramienta.getClass().getSimpleName()+".png";
     }
     
     private String rutaDeMaterial(Material material) {
@@ -85,13 +52,7 @@ public class ControladorDeInventario {
     	return ruta;
     }
 
-    private void inicializarHash() {
-        this.materialesHash.put('m', "madera");
-        this.materialesHash.put('p', "piedra");
-        this.materialesHash.put('M', "metal");
-        this.materialesHash.put('d', "diamante");
-    }
-
+    /*
     public void agregarAMesaCrafteo(char identificador, int pos){
         Material[] materiales = new Material[4];
         materiales[0] = new Madera();
@@ -108,6 +69,7 @@ public class ControladorDeInventario {
         }
         mesaCrafteo.agregarMaterialEnPosicion(material,pos);
     }
+    */
 
     public void actualizarVistaInventario() {
     	
@@ -115,38 +77,23 @@ public class ControladorDeInventario {
     	
     	System.out.println("entre");
     	GridPane inventario = this.inventarioVista.gridInventario();
-    	
-    	System.out.println(inventario.getChildren().size());
+
     	inventario.getChildren().clear();
-    	System.out.println(inventario.getChildren().size());
-    	
+     	
     	for(int fila = 0; fila < 3; fila++) {
             for(int col = 0; col < 9; col++) {
             	
-            	StackPane casilla = this.inventarioVista.crearCasilla();
+            	StackPane casilla = new Casilla();
             	
-            	casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[col][fila]), 38));
-            	
+            	casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[col][fila]), 38));         	
                 inventario.add(casilla,  col, fila);;
             }
         }
     	
-    	/*for(int i = 0; i < materiales.size(); i++) {
-        	StackPane nuevaCasilla = new StackPane();
-       
-        	System.out.println("waa "+inventario.getChildren().size());
-        	nuevaCasilla.getChildren().addAll(this.inventarioVista.getImagen("casilla.png", 38), this.inventarioVista.getImagen(this.rutaDeMaterial(materiales.get(i)), 38));
-        	inventario.addColumn(i, nuevaCasilla);
-        	
-    	}
+    }
+    
+    public void moverMaterialAMesaCrafteo() {
     	
-    	for(int fila = materiales.size(); fila < 27; fila++) {
-    		if(fila > 9)
-    			inventario.addColumn(fila, this.inventarioVista.crearCasilla());
-    		else
-        		inventario.addRow(fila, this.inventarioVista.crearCasilla());
-        }
-        */
     	
     }
     

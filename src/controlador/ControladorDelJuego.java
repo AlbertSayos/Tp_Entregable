@@ -127,10 +127,9 @@ public class ControladorDelJuego {
     		int colIndex = GridPane.getColumnIndex(nodoClickeado);
     		int rowIndex = GridPane.getRowIndex(nodoClickeado);
     		System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
-    		//System.out.println(this.juego.jugador.getHerramientaEquipada().getDurabilidad());
     		if(!this.juego.jugadorGolpeaEnPosicion(colIndex, rowIndex)){
     			mapa.getChildren().remove(nodoClickeado);    			
-    			this.actualizarInventario();
+    			//this.actualizarInventario();
     		} 	
     		
     	}
