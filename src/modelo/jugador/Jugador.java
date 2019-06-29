@@ -105,6 +105,11 @@ public class Jugador {
 
 		this.herramientaEquipada = herramienta;
 	}
+	
+	
+	public void equiparHerramientaEnPosicion(int pos) {
+		this.herramientaEquipada = this.inventario.obtenerHerramientaEnPosicion(pos);
+	}
 /*
     public Inventario getInventario() {
 
@@ -207,8 +212,10 @@ public class Jugador {
         return posicion.equals(derecha) || posicion.equals(izquierda) || posicion.equals(arriba) || posicion.equals(abajo); 
 
     }
-
-
+	
+	public Herramienta[] getHerramientas() {
+		return this.inventario.getHerramientas();
+	}
 }
 
 

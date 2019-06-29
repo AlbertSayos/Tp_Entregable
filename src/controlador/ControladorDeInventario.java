@@ -42,34 +42,10 @@ public class ControladorDeInventario {
     }
     
     private String rutaDeMaterial(Material material) {
-    	String ruta = " ";
-    	if(material.getClass() == Madera.class) ruta = "madera.png";
-    	if(material.getClass() == Metal.class) ruta = "metal.png";
-    	if(material.getClass() == Piedra.class) ruta = "piedra.png";
-    	if(material.getClass() == Diamante.class) ruta = "diamante.png";
-    	if(material.getClass() == SinMaterial.class) ruta = "vacio.png";
-    	
-    	return ruta;
+    	return material.getClass().getSimpleName()+".png";
     }
 
-    /*
-    public void agregarAMesaCrafteo(char identificador, int pos){
-        Material[] materiales = new Material[4];
-        materiales[0] = new Madera();
-        materiales[1] = new Metal();
-        materiales[2] = new Piedra();
-        materiales[3] = new Diamante();
-        Material material = null;
-        int index = 0;
-        while (material == null || index < 4){
-            if (identificador == materiales[index].getIdentificador()){
-                material = materiales[index];
-            }
-            index++;
-        }
-        mesaCrafteo.agregarMaterialEnPosicion(material,pos);
-    }
-    */
+
 
     public void actualizarVistaInventario() {
     	
@@ -84,7 +60,7 @@ public class ControladorDeInventario {
             for(int col = 0; col < 9; col++) {
             	
             	StackPane casilla = new Casilla();
-            	
+            	System.out.println(this.rutaDeMaterial(materiales[col][fila]));
             	casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[col][fila]), 38));         	
                 inventario.add(casilla,  col, fila);;
             }
@@ -108,4 +84,24 @@ public class ControladorDeInventario {
         //return mesaCrafteo.construir();
     	return null;
     }
+    
+    
+    /*
+    public void agregarAMesaCrafteo(char identificador, int pos){
+        Material[] materiales = new Material[4];
+        materiales[0] = new Madera();
+        materiales[1] = new Metal();
+        materiales[2] = new Piedra();
+        materiales[3] = new Diamante();
+        Material material = null;
+        int index = 0;
+        while (material == null || index < 4){
+            if (identificador == materiales[index].getIdentificador()){
+                material = materiales[index];
+            }
+            index++;
+        }
+        mesaCrafteo.agregarMaterialEnPosicion(material,pos);
+    }
+    */
 }

@@ -111,6 +111,10 @@ public class Juego {
 
     }
     
+    public boolean hayMaterialEnPosicion(int x, int y) {
+    	return this.jugador.puedeGolpear(new Posicion(x,y));
+    }
+    
     public boolean jugadorGolpeaEnPosicion(int x, int y) {
     	Posicion posicion = new Posicion(x,y);
     	

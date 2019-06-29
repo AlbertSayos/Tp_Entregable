@@ -1,8 +1,7 @@
 package vista;
 
 import controlador.Escenario;
-import controlador.ControladorDeInventario;
-import controlador.ControladorDelJuego;
+import controlador.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,9 +12,10 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.juego.Juego;
 import modelo.jugador.Jugador; 
+import javafx.scene.media.*;
+import java.net.URL;
 
 public class Principal extends Application {
-
 
     public static void main(String[] args) {
         launch(args);
@@ -34,8 +34,8 @@ public class Principal extends Application {
         try {
 
             Juego juego = new Juego();
-            //Jugador jugador = juego.getJugador();
-
+            Jugador jugador = juego.getJugador();
+            
             BorderPane panel = new BorderPane();
             panel.setPadding(new Insets(20, 0, 20, 20));
             Boton comenzar = new Boton("Comenzar");
@@ -55,10 +55,13 @@ public class Principal extends Application {
             primaryStage.setScene(escena);
 
             Escenario escenario = new Escenario(escena);
-            SelectorDeHerramientas selectorHerramientas = new SelectorDeHerramientas();
             
-            InventarioVista inventarioVista = new InventarioVista(escenario);
+            SelectorDeHerramientas selectorHerramientas = new SelectorDeHerramientas();
+            ControladorSelectorHerramienta controladorSelector = new ControladorSelectorHerramienta(jugador, selectorHerramientas);
+            
+            InventarioVista inventarioVista = new InventarioVista(escenario, selectorHerramientas);
             ControladorDeInventario controladorInventario = new ControladorDeInventario(juego, inventarioVista);
+            
             
             JuegoVista juegoVista = new JuegoVista(escenario, selectorHerramientas, inventarioVista);
             
@@ -80,22 +83,16 @@ public class Principal extends Application {
 
             controladorJuego.actualizarVista();
 
-            Jugador jugador = juego.getJugador();
+            
             //ControladorDeInventario controladorDeInventario = new ControladorDeInventario(jugador.getInventario(), inventarioVista, selectorHerramientas);
             //controladorDeInventario.actualizarVista();
             //ControladorDelJuego controladorJuego = new ControladorDelJuego(juegoVista, juego, controladorDeInventario);
             //controladorJuego.actualizarVista();
 
-            selectorHerramientas.setOnMouseClicked(e -> {
-                Integer posicion = selectorHerramientas.getPosicion(e);
-                
-                if (posicion != null) {
-                    //jugador.cambiarHerramienta(posicion);
-                }
-            });	
-            
             selectorHerramientas.agregar(jugador.getHerramientaEquipada().getClass().getSimpleName()+".png", 0);
            
+            empezarMusicaFondo();
+            
             primaryStage.show();
         }
 
@@ -110,5 +107,15 @@ public class Principal extends Application {
 
         }
 
+        
+    }
+    
+    public void empezarMusicaFondo() {
+    	final URL resource = this.getClass().getResource("/inicio_juego.mp3");
+    	System.out.println(resource);
+    	System.out.println(resource.toString());
+    	AudioClip cancion = new AudioClip(resource.toString());
+    	cancion.play();
+    	
     }
 }

@@ -7,6 +7,7 @@ import modelo.juego.Juego;
 import modelo.posicion.Posicion;
 import vista.JuegoVista;
 import modelo.materiales.*;
+import javafx.scene.media.*;
 
 
 public class ControladorDelJuego {
@@ -39,7 +40,7 @@ public class ControladorDelJuego {
                 Posicion posicion = new Posicion(row,col);
                 Material objeto = juego.getMapa().obtenerObjeto(posicion);
                 
-                String nombreImagen = "vacio.png";
+                String nombreImagen = "SinMaterial.png";
                 if(objeto.getClass() == Madera.class)
                 	nombreImagen = "madera.png";
                 if(objeto.getClass() == Diamante.class)
@@ -122,15 +123,20 @@ public class ControladorDelJuego {
     public void golpearMaterial(GridPane mapa, MouseEvent event){
     	
     	Node nodoClickeado = event.getPickResult().getIntersectedNode();
-    	   
+    	
     	if (nodoClickeado!= mapa) {
-    		int colIndex = GridPane.getColumnIndex(nodoClickeado);
-    		int rowIndex = GridPane.getRowIndex(nodoClickeado);
+    		int colIndex = mapa.getColumnIndex(nodoClickeado);
+    		int rowIndex = mapa.getRowIndex(nodoClickeado);
     		System.out.println("Mouse clicked cell: " + colIndex + " And: " + rowIndex);
     		if(!this.juego.jugadorGolpeaEnPosicion(colIndex, rowIndex)){
     			mapa.getChildren().remove(nodoClickeado);    			
     			//this.actualizarInventario();
-    		} 	
+    		}
+    		
+    		if(this.juego.hayMaterialEnPosicion(colIndex, rowIndex)) {
+        		AudioClip sonido = new AudioClip(getClass().getResource("/romper_diamante.mp3").toString());
+        		sonido.play();
+        	}
     		
     	}
     	

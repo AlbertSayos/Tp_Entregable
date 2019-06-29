@@ -7,13 +7,28 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import controlador.ControladorSelectorHerramienta;
 
 public class SelectorDeHerramientas extends GridPane {
 
+	ControladorSelectorHerramienta controlador;
+	
     public SelectorDeHerramientas() {
+
         this.setAlignment(Pos.TOP_CENTER);
         for (int i = 0; i < 9; i++)
             this.add(new Casilla(),i , 0);
+        
+        setOnMouseClicked(e -> {
+            int posicion = getPosicion(e);
+            
+            System.out.println(posicion+" MI POSSS");
+            controlador.cambiarHerramientaEquipada(posicion);
+            	//jugador.cambiarHerramienta(posicion);
+            
+            
+        });	
+        
     }
 
     public void agregar(String elemento, int pos) {
@@ -23,9 +38,9 @@ public class SelectorDeHerramientas extends GridPane {
         this.add(imageView, pos, 0);
     }
 
-    public Integer getPosicion(MouseEvent event) {
+    public int getPosicion(MouseEvent event) {
         Node nodoClickeado = event.getPickResult().getIntersectedNode();
-        return GridPane.getColumnIndex(nodoClickeado);
+        return GridPane.getColumnIndex(nodoClickeado.getParent());
     }
 
     public void limpiar() {
@@ -33,5 +48,12 @@ public class SelectorDeHerramientas extends GridPane {
         for (int i = 0; i < 9; i++)
         	this.add(new Casilla(),i , 0);
     }
+    
+    public ControladorSelectorHerramienta controlador() {
+    	return this.controlador;
+    }
 
+    public void setControlador(ControladorSelectorHerramienta controlador) {
+    	this.controlador = controlador;
+    }
 }

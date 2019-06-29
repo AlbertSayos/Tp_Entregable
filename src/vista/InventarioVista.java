@@ -17,9 +17,12 @@ public class InventarioVista {
     private GridMatriz inventario;
     private GridPane mesaCraft;
     private ControladorDeInventario controlador;
+    private SelectorDeHerramientas selector;
 
-    public InventarioVista(Escenario escenario) {
+    public InventarioVista(Escenario escenario, SelectorDeHerramientas selector) {
 
+    	this.selector = selector;
+    			
     	//CREACION INVENTARIO VISTA PRINCIPAL
         inventarioVista = new BorderPane();
         inventarioVista.setId("background");
@@ -54,7 +57,7 @@ public class InventarioVista {
         menu.setAlignment(Pos.CENTER);
         Boton cerrar = new Boton("Cerrar - [E]");
         
-        cerrar.setOnAction(e -> { escenario.mostrar("juego"); });
+        cerrar.setOnAction(e -> { escenario.mostrar("juego"); ; });
         menu.getChildren().addAll(cerrar);
 
         //SET DEL CONTENEDOR MAYOR
@@ -88,7 +91,8 @@ public class InventarioVista {
 
         Boton crear = new Boton("Crear");
         crear.setOnAction(e -> {
-            
+        	this.selector.controlador().agregarNuevaHerramienta();
+            this.selector.controlador().actualizarSelectorHerramienta();
         });
         
         this.mesaCraft.setOnMouseClicked(e -> {
