@@ -13,12 +13,11 @@ public class ControladorDelJuego {
 
     private Juego juego;
     private JuegoVista juegoVista;
-    private ControladorDeInventario controladorDeInventario;
 
 
-    public ControladorDelJuego(JuegoVista juegoVista, Juego  juego, ControladorDeInventario controladorDeInventario) {
 
-        this.controladorDeInventario = controladorDeInventario;
+    public ControladorDelJuego(JuegoVista juegoVista, Juego  juego) {
+
         this.juego = juego;
         this.juegoVista = juegoVista;
         juegoVista.setControlador(this);
@@ -26,7 +25,7 @@ public class ControladorDelJuego {
     }
     
     public void actualizarInventario() {
-    	this.controladorDeInventario.actualizarVista();
+    	//this.controladorDeInventario.actualizarVista();
     }
 
 
@@ -132,9 +131,7 @@ public class ControladorDelJuego {
     		if(!this.juego.jugadorGolpeaEnPosicion(colIndex, rowIndex)){
     			mapa.getChildren().remove(nodoClickeado);    			
     			this.actualizarInventario();
-    		}
-    	
-    		
+    		} 	
     		
     	}
     	

@@ -13,11 +13,12 @@ public class JuegoVista {
     private GridPane mapa;
     private ControladorDelJuego controlador;
     private BorderPane main;
+    private InventarioVista inventario;
 
+    public JuegoVista(Escenario escenario, SelectorDeHerramientas selectorHerramientas, InventarioVista inventario) {
 
-    public JuegoVista(Escenario escenario, SelectorDeHerramientas selectorHerramientas) {
-
-
+    	this.inventario = inventario ;
+    	
         main = new BorderPane();
         this.mapa = new GridPane();
         mapa.setAlignment(Pos.CENTER);
@@ -26,9 +27,12 @@ public class JuegoVista {
 
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
+        
+        //BOTON INVENTARIO
         Boton btnInventario = new Boton("Inventario - [E]");
+        btnInventario.setOnAction(e ->{escenario.mostrar("inventario"); this.inventario.controlador().actualizarVistaInventario();});
+        
         Boton btnMenu = new Boton("Menu - [ESC]");
-        btnInventario.setOnAction(e ->{escenario.mostrar("inventario"); this.controlador.actualizarInventario();});
         btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
 

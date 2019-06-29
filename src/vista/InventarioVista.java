@@ -14,75 +14,110 @@ public class InventarioVista {
 
 
 
-    private BorderPane root;
+    private BorderPane inventarioVista;
     private Node seleccionado = null;
     private GridPane inventario;
+    private GridPane mesaCraft;
     private ControladorDeInventario controlador;
-    private HBox mesa;
-
 
     public InventarioVista(Escenario escenario) {
 
-
-        root = new BorderPane();
-        root.setId("background");
-
-        this.root.setStyle("-fx-background-image: url('crafteo.png')");
-
-        VBox contenedor = new VBox();
-        contenedor.setAlignment(Pos.CENTER);
-        contenedor.setId("contenedor-casillas");
-
+    	//CREACION INVENTARIO VISTA PRINCIPAL
+        inventarioVista = new BorderPane();
+        inventarioVista.setId("background");
+        this.establecerFondo("crafteo.png");
+        
+        //CREACION CONTENEDOR VERTICAL Q IRA DENTRO DE LA VISTA PRINCIPAL
+        //DE inventarioVista 
+        VBox contenedorVertical = new VBox();
+        
+        contenedorVertical.setAlignment(Pos.CENTER);
+        contenedorVertical.setId("contenedorVertical-casillas");
         Label titulo1 = new Label("Crafting");
         titulo1.setId("titulo-inventario");
-        //creacion del inventario
-        this.inventario = crearInventario(3, 9);
+        
+        //CONTENEDOR INVENTARIO
+        
+        VBox contenedorInventario = new VBox();
+        
+        this.inventario = crearInventario(3, 9);       
         Label titulo2 = new Label("Inventario");
         titulo2.setId("titulo-inventario");
-        HBox mesaDeCrafteo = crearMesa();	
+        contenedorInventario.getChildren().addAll(this.inventario, titulo2);
+        
+        // CONTENEDOR MESA CRAFTEO
+        HBox contenedorMesaDeCrafteo = crearContenedorDeMesaCrafteo();	
+        
+        //SE AÑADEN LAS COSAS A CONTENEDEDOR VERTICAL 
+        contenedorVertical.getChildren().addAll(titulo1, contenedorMesaDeCrafteo, titulo2, contenedorInventario);
 
-        contenedor.getChildren().addAll(titulo1, mesaDeCrafteo, titulo2, inventario);
-
+        // TOP
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
         Boton cerrar = new Boton("Cerrar - [E]");
+        
         cerrar.setOnAction(e -> { escenario.mostrar("juego"); });
         menu.getChildren().addAll(cerrar);
-        root.setTop(menu);
-        root.setCenter(contenedor);
-        root.setOnKeyPressed(event -> {
+
+        //SET DEL CONTENEDOR MAYOR
+        inventarioVista.setTop(menu);
+        inventarioVista.setCenter(contenedorVertical);
+        
+        inventarioVista.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.E) { escenario.mostrar("juego"); }
         });
-        this.mesa = mesaDeCrafteo;
+
+    }
+
+    public void establecerFondo(String fondo){
+    	this.inventarioVista.setStyle("-fx-background-image: url('"+fondo+"')");
     }
 
 
-    public Pane getPane() {
-        return this.root;
+    public Node nodoSeleccionado() {
+    	return this.seleccionado;
     }
+    
+    public StackPane crearCasilla() {
 
+        StackPane casillero = new StackPane();
+        casillero.setId("casilla");
+        
+        ImageView imageView = new ImageView(new Image(("casilla.png"), 48, 0, true, true));
+        casillero.getChildren().add(imageView);       
 
-    private GridPane crearInventario(int maxFil, int maxCol) {
+        return casillero;
+    }
+    
+    
+    public GridPane crearInventario(int maxFil, int maxCol) {
 
         GridPane inventario = new GridPane();
         inventario.setAlignment(Pos.CENTER);
         // Agrego casillas
+        
         for(int fila = 0; fila < maxFil; fila++) {
-            for(int col = 0; col < maxCol; col++) {
-                agregarCasilla(inventario, col, fila);
+            for(int col = 0; col < maxCol; col++) {                
+                inventario.add(crearCasilla(), col, fila);
             }
         }
-
+        
+        inventario.setOnMouseClicked(e -> {
+            
+        	System.out.println("ON MOUSE CLICK CASILLERO");                
+            this.seleccionado = e.getPickResult().getIntersectedNode();
+        
+        });
         return inventario;
     }
 
 
-    private HBox crearMesa() {
+    private HBox crearContenedorDeMesaCrafteo() {
 
         HBox contenedor = new HBox(10);
+        
         contenedor.setAlignment(Pos.CENTER);
-        GridPane mesa = crearInventario(3, 3);
-
+        this.mesaCraft = crearInventario(3, 3);
         ImageView flecha = getImagen("flecha.png", 50);
         ImageView resultado = getImagen("casilla.png", 70);
 
@@ -91,13 +126,24 @@ public class InventarioVista {
         crear.setOnAction(e -> {
             
         });
-
-        contenedor.getChildren().addAll(mesa, flecha,crear , resultado);
+        
+        this.mesaCraft.setOnMouseClicked(e -> {
+            
+        	System.out.println("ON MOUSE CLICK MESA");
+        	if(this.seleccionado != null) {
+        		this.controlador.colocarNodoSobreMesaCrafteo(e.getPickResult().getIntersectedNode());
+            	this.seleccionado = null;
+        	}
+        
+        });
+        
+        contenedor.getChildren().addAll(this.mesaCraft, flecha,crear , resultado);
 
         return contenedor;
     }
 
-    
+  
+    /*  
     private void agregarElemento(GridPane inventario, String elemento, int fila, int columna) {
 
         System.out.println("En inventario vista agregarElemento recibe como elemento: "+elemento);
@@ -118,35 +164,17 @@ public class InventarioVista {
             }
         });
     }
+*/
+
+  
 
 
-    private void agregarCasilla(GridPane inventario, int col, int fila) {
-
-        StackPane stackBack = new StackPane();
-        ImageView imageView = new ImageView(new Image(("casilla.png"), 48, 0, true, true));
-        stackBack.getChildren().add(imageView);
-        inventario.add(stackBack, col, fila);
-        stackBack.setId("casilla");
-        stackBack.setOnMouseReleased(e -> {
-            if (this.seleccionado != null) {
-                System.out.println("BACK");
-                
-                stackBack.getChildren().add(this.seleccionado);
-                int pos = (fila * 3) + col;
-                this.controlador.agregarAMesaCrafteo(this.seleccionado.getId().charAt(0),pos);
-                this.seleccionado = null;
-            }
-        });
-
-    }
-
-
-    private ImageView getImagen(String nombre, int tamanio) {
+    public ImageView getImagen(String nombre, int tamanio) {
         return new ImageView(new Image((nombre), tamanio, 0, true, true));
     }
 
-
-    public void agregar(String elemento, int fila, int columna) {
+/*
+   public void agregar(String elemento, int fila, int columna) {
         this.agregarElemento(this.inventario, elemento, fila, columna);
     }
 
@@ -162,10 +190,34 @@ public class InventarioVista {
         System.out.println("****LIMPIO MESA ***");
         this.mesa = this.crearMesa();
     }
-
-
+*/
     public void setControlador(ControladorDeInventario controladorDeInventario) {
         this.controlador = controladorDeInventario;
+    }
+    
+    public void agregarNodoAMesaCraft(Node nodoABorrar, Node nodoNuevo) {
+    	int col= GridPane.getColumnIndex(nodoABorrar);
+    	int row = GridPane.getRowIndex(nodoABorrar);
+    	
+    	this.mesaCraft.getChildren().remove(nodoABorrar);
+    	this.mesaCraft.add(nodoNuevo, col, row);
+    	
+    }
+    
+    public GridPane gridInventario() {
+    	return this.inventario;
+    }
+    
+    public GridPane gridMesaCraft() {
+    	return this.mesaCraft;
+    }
+    
+    public ControladorDeInventario controlador() {
+    	return this.controlador;
+    }
+    
+    public Pane getPane() {
+        return this.inventarioVista;
     }
 
 

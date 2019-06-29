@@ -33,7 +33,9 @@ public class Principal extends Application {
     	
         try {
 
-        	
+            Juego juego = new Juego();
+            Jugador jugador = juego.getJugador();
+
             BorderPane panel = new BorderPane();
             panel.setPadding(new Insets(20, 0, 20, 20));
             Boton comenzar = new Boton("Comenzar");
@@ -54,8 +56,16 @@ public class Principal extends Application {
 
             Escenario escenario = new Escenario(escena);
             SelectorDeHerramientas selectorHerramientas = new SelectorDeHerramientas();
+            
             InventarioVista inventarioVista = new InventarioVista(escenario);
-            JuegoVista juegoVista = new JuegoVista(escenario, selectorHerramientas);
+            ControladorDeInventario controladorInventario = new ControladorDeInventario(juego, inventarioVista);
+            
+            JuegoVista juegoVista = new JuegoVista(escenario, selectorHerramientas, inventarioVista);
+            
+            
+            ControladorDelJuego controladorJuego = new ControladorDelJuego(juegoVista, juego) ;
+            
+            
             CreditosVista creditosVista = new CreditosVista(escenario);
             escenario.set("entrada", panel);
             escenario.set("inventario", inventarioVista.getPane());
@@ -67,11 +77,8 @@ public class Principal extends Application {
             panel.setStyle("-fx-background-image: url('entrada4.jpg')");
 
             salir.setOnAction(e -> { System.exit(0); });
-            Juego juego = new Juego();
-            Jugador jugador = juego.getJugador();
-            ControladorDeInventario controladorDeInventario = new ControladorDeInventario(jugador.getInventario(), inventarioVista, selectorHerramientas);
-            controladorDeInventario.actualizarVista();
-            ControladorDelJuego controladorJuego = new ControladorDelJuego(juegoVista, juego, controladorDeInventario);
+
+
             controladorJuego.actualizarVista();
             selectorHerramientas.setOnMouseClicked(e -> {
                 Integer posicion = selectorHerramientas.getPosicion(e);
@@ -85,7 +92,6 @@ public class Principal extends Application {
         }
 
         catch (Exception e) {
-
             Alert error = new Alert(Alert.AlertType.INFORMATION);
             error.setTitle("ERROR");
             error.setHeaderText("Algo salio mal en tiempo de ejecucion...");
