@@ -6,7 +6,7 @@ import modelo.excepciones.*;
 
 public abstract class Herramienta {
 
-
+	protected String identidad;
     protected float durabilidad;
     protected int fuerza;
     protected float factorDeDesgaste;
@@ -44,7 +44,7 @@ public abstract class Herramienta {
 
     public boolean esEquivalente(Herramienta otraHerramienta){
 
-        return this.getClass() == otraHerramienta.getClass();
+        return this.identidad == otraHerramienta.identidad;
 
     }
     

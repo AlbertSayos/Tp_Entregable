@@ -34,7 +34,7 @@ public class Principal extends Application {
         try {
 
             Juego juego = new Juego();
-            Jugador jugador = juego.getJugador();
+            //Jugador jugador = juego.getJugador();
 
             BorderPane panel = new BorderPane();
             panel.setPadding(new Insets(20, 0, 20, 20));
@@ -78,12 +78,18 @@ public class Principal extends Application {
 
             salir.setOnAction(e -> { System.exit(0); });
 
-
             controladorJuego.actualizarVista();
+
+            Jugador jugador = juego.getJugador();
+            //ControladorDeInventario controladorDeInventario = new ControladorDeInventario(jugador.getInventario(), inventarioVista, selectorHerramientas);
+            //controladorDeInventario.actualizarVista();
+            //ControladorDelJuego controladorJuego = new ControladorDelJuego(juegoVista, juego, controladorDeInventario);
+            //controladorJuego.actualizarVista();
+
             selectorHerramientas.setOnMouseClicked(e -> {
                 Integer posicion = selectorHerramientas.getPosicion(e);
                 if (posicion != null) {
-                    jugador.cambiarHerramienta(posicion);
+                    //jugador.cambiarHerramienta(posicion);
                 }
             });	
             

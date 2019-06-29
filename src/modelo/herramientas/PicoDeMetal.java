@@ -8,7 +8,8 @@ public class PicoDeMetal extends Pico{
 		
 		this.durabilidad = 400f;
 		this.fuerza = 12;
-		this.factorDeDesgaste = 10f; // ESTO EN REALIDAD ES LA CANTIDAD DE USOS
+		this.factorDeDesgaste = 10f;
+		this.identidad = "picoDeMetal";
 
 	}
 	

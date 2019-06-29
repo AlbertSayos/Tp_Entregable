@@ -16,7 +16,7 @@ import javafx.scene.*;
 public class ControladorDeInventario {
 
     private SelectorDeHerramientas selectorHerramientas;
-    private ArrayList<Material> materiales;
+    private Material[][] materiales;
     private ArrayList<Herramienta> herramientas;
     private InventarioVista inventarioVista;
     private HashMap<Character, String> materialesHash = new HashMap<>();
@@ -27,6 +27,9 @@ public class ControladorDeInventario {
     	
         System.out.println("Iniciando constructor de Controlador de inventario");
         this.juego = juego;        
+        //this.materiales = inventario.getMateriales();
+        //this.herramientas = inventario.getHerramientas();
+        this.selectorHerramientas = selectorHerramientas;
         this.inventarioVista = inventarioVista;
         //inicializarHash();
         
@@ -77,6 +80,7 @@ public class ControladorDeInventario {
     	if(material.getClass() == Metal.class) ruta = "metal.png";
     	if(material.getClass() == Piedra.class) ruta = "piedra.png";
     	if(material.getClass() == Diamante.class) ruta = "diamante.png";
+    	if(material.getClass() == SinMaterial.class) ruta = "vacio.png";
     	
     	return ruta;
     }
@@ -107,17 +111,29 @@ public class ControladorDeInventario {
 
     public void actualizarVistaInventario() {
     	
-    	//this.inventarioVista.gridInventario() = this.inventarioVista.crearInventario(3, 9);
-    	ArrayList<Material> materiales = this.juego.getJugador().getInventario().getMateriales();
+    	Material[][] materiales = this.juego.getJugador().obtenerInventario().materiales();
+    	
     	System.out.println("entre");
     	GridPane inventario = this.inventarioVista.gridInventario();
     	
     	System.out.println(inventario.getChildren().size());
     	inventario.getChildren().clear();
     	System.out.println(inventario.getChildren().size());
-    	for(int i = 0; i < materiales.size(); i++) {
+    	
+    	for(int fila = 0; fila < 3; fila++) {
+            for(int col = 0; col < 9; col++) {
+            	
+            	StackPane casilla = this.inventarioVista.crearCasilla();
+            	
+            	casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[col][fila]), 38));
+            	
+                inventario.add(casilla,  col, fila);;
+            }
+        }
+    	
+    	/*for(int i = 0; i < materiales.size(); i++) {
         	StackPane nuevaCasilla = new StackPane();
-        
+       
         	System.out.println("waa "+inventario.getChildren().size());
         	nuevaCasilla.getChildren().addAll(this.inventarioVista.getImagen("casilla.png", 38), this.inventarioVista.getImagen(this.rutaDeMaterial(materiales.get(i)), 38));
         	inventario.addColumn(i, nuevaCasilla);
@@ -130,6 +146,7 @@ public class ControladorDeInventario {
     		else
         		inventario.addRow(fila, this.inventarioVista.crearCasilla());
         }
+        */
     	
     }
     

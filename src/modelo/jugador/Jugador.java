@@ -15,7 +15,7 @@ public class Jugador {
 	private Inventario inventario;
 	public boolean estaPosicionado;
 	public Herramienta herramientaSeleccionada;
-	public Mapa mapa;
+	//public Mapa mapa;
 	public Material materialSeleccionado;
 
 
@@ -105,13 +105,13 @@ public class Jugador {
 
 		this.herramientaEquipada = herramienta;
 	}
-
+/*
     public Inventario getInventario() {
 
 		return this.inventario;
 
     }
-
+*/
 	public Jugador(){
 
 		this.herramientaEquipada = new HachaDeMadera();
@@ -124,7 +124,7 @@ public class Jugador {
 
 	}
 
-
+/*
 	public boolean inventarioContieneHerramienta(Herramienta herramienta) {
 
 		return this.inventario.contieneHerramienta(herramienta);
@@ -136,7 +136,7 @@ public class Jugador {
 
 		return this.inventario.contieneMaterial(material);
 	}
-
+*/
 
 
 	public int getPosicionColumna() {
@@ -152,7 +152,7 @@ public class Jugador {
 
 	}
 
-
+/*
 	public void seleccionarMaterial(int posicion) {
 
 		this.materialSeleccionado = this.inventario.seleccionarMaterial(posicion);
@@ -164,21 +164,36 @@ public class Jugador {
 
 		this.herramientaEquipada = this.inventario.seleccionarHerramienta(posicion);
 
+	}*/
+
+
+	public void agregarMaterialAInventarioEnPosicion(Material material,int fila, int columna) {
+
+		this.inventario.agregarMaterialEnPosicion(material,fila,columna);
 	}
 
 
-	public void agregarMaterialAInventario(Material material) {
+	public void agregarHerramientaAInventarioEnPosicion(Herramienta herramienta,int posicion) {
 
+		this.inventario.agregarHerramientaEnPosicion(herramienta,posicion);
+
+	}
+	
+	public void agregarMaterialAlInventario(Material material) {
 		this.inventario.agregarMaterial(material);
 	}
-
-
-	public void agregarHerramientaAInventario(Herramienta herramienta) {
-
+	
+	public void agregarHerramientaAlInventario(Herramienta herramienta) {
 		this.inventario.agregarHerramienta(herramienta);
-
 	}
-
+	
+	public Material quitarMaterialDelInventario(int posicionFila ,int posicionColumna) {
+		return this.inventario.quitarMaterialDePosicion(posicionFila, posicionColumna);
+	}
+	
+	public Herramienta quitarHerramientaDelInventario(int posicion) {
+		return this.inventario.quitarHerramientaDePosicion(posicion);
+	}
 
 	public boolean puedeGolpear(Posicion posicion){
 
