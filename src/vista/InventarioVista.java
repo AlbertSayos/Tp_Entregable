@@ -18,7 +18,8 @@ public class InventarioVista {
     private GridPane mesaCraft;
     private ControladorDeInventario controlador;
     private SelectorDeHerramientas selector;
-
+    private Casilla casillaResultado;
+    
     public InventarioVista(Escenario escenario, SelectorDeHerramientas selector) {
 
     	this.selector = selector;
@@ -69,7 +70,12 @@ public class InventarioVista {
         menu.setAlignment(Pos.CENTER);
         Boton cerrar = new Boton("Cerrar - [E]");
         
-        cerrar.setOnAction(e -> { escenario.mostrar("juego"); this.controlador.actualizarVistaInventario();; });
+        cerrar.setOnAction(e -> { escenario.mostrar("juego");
+        	this.controlador.actualizarVistaInventario();
+        	this.controlador.quitarMaterialesDeLaMesa();
+        	this.controlador.actualizarMesaCrafteo();
+        	this.controlador.actualizarCasilleroRes(casillaResultado);;});
+        
         menu.getChildren().addAll(cerrar);
 
         //SET DEL CONTENEDOR MAYOR
@@ -77,7 +83,11 @@ public class InventarioVista {
         inventarioVista.setCenter(contenedorVertical);
         
         inventarioVista.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.E) { escenario.mostrar("juego"); this.selector.controlador().actualizarSelectorHerramienta();}
+            if (event.getCode() == KeyCode.E) { escenario.mostrar("juego"); 
+            this.selector.controlador().actualizarSelectorHerramienta();
+            this.controlador.quitarMaterialesDeLaMesa();
+            this.controlador.actualizarMesaCrafteo();
+            this.controlador.actualizarCasilleroRes(casillaResultado);;}
         });
 
     }
@@ -94,12 +104,15 @@ public class InventarioVista {
         contenedor.setAlignment(Pos.CENTER);
         this.mesaCraft = new GridMatriz(3, 3);
         ImageView flecha = getImagen("flecha.png", 50);
-        ImageView resultado = getImagen("casilla.png", 70);
-
+        Casilla resultado = new Casilla(70);
+        this.casillaResultado = resultado;
+        
         Boton crear = new Boton("Crear");
         crear.setOnAction(e -> {
-        	this.selector.controlador().agregarNuevaHerramienta();
-            this.selector.controlador().actualizarSelectorHerramienta();
+        	//is.selector.controlador().agregarNuevaHerramienta();
+            this.controlador.crearHerramienta(resultado);
+        	this.selector.controlador().actualizarSelectorHerramienta();
+        	
         });
         
         this.mesaCraft.setOnMouseClicked(e -> {

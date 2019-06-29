@@ -4,7 +4,6 @@ package controlador;
 import modelo.constructores.Mesa;
 import modelo.juego.*;
 import modelo.herramientas.*;
-import modelo.jugador.Inventario;
 import modelo.materiales.*;
 import vista.InventarioVista;
 import vista.SelectorDeHerramientas;
@@ -16,19 +15,13 @@ import vista.*;
 
 public class ControladorDeInventario {
 
-    private SelectorDeHerramientas selectorHerramientas;
-    private ArrayList<Herramienta> herramientas;
     private InventarioVista inventarioVista;
-    private HashMap<Character, String> materialesHash = new HashMap<>();
     private Juego juego;
 
     public ControladorDeInventario(Juego juego, InventarioVista inventarioVista) {
     	
         System.out.println("Iniciando constructor de Controlador de inventario");
         this.juego = juego;        
-        //this.materiales = inventario.getMateriales();
-        //this.herramientas = inventario.getHerramientas();
-        this.selectorHerramientas = selectorHerramientas;
         this.inventarioVista = inventarioVista;
         //inicializarHash();
         
@@ -88,6 +81,23 @@ public class ControladorDeInventario {
     			indice++;
     		}
     	}
+    	
+    }
+    
+    public void actualizarCasilleroRes(Casilla casillaResultado) {
+    	casillaResultado.getChildren().clear();
+    	casillaResultado.getChildren().add(new Casilla(70));
+    }
+    
+    public void crearHerramienta(Casilla casillaResultado) {
+    	Herramienta herramientaNueva = juego.crearHerramienta();
+    	
+    	casillaResultado.getChildren().add(this.inventarioVista.getImagen(rutaDeHerramienta(herramientaNueva), 48));
+    	actualizarMesaCrafteo();
+    }
+    
+    public void quitarMaterialesDeLaMesa() {
+    	juego.agregarTodosLosMaterialesDeLaMesaAlinventario();
     }
     
     /*public void colocarNodoSobreMesaCrafteo(Node nodoDeMesaCrafteo) {
@@ -97,11 +107,7 @@ public class ControladorDeInventario {
     	}
     }
     */
-    public Herramienta crearHerramienta() {
-        //return mesaCrafteo.construir();
-    	return null;
-    }
-    
+   
     
     /*
     public void agregarAMesaCrafteo(char identificador, int pos){

@@ -27,7 +27,8 @@ public class MesaDeCrafteo{
 				return constructor.ConstruirHerramienta();
 			}
 		}
-		return null;
+		return new SinHerramienta();
+		
 	}
 	
 	public Material quitarMaterialEnPosicion(int unaPosicion) {

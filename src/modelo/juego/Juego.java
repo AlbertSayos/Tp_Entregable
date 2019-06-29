@@ -9,7 +9,7 @@ import modelo.excepciones.*;
 import modelo.mapas.Mapa;
 import modelo.materiales.*;
 import modelo.posicion.Posicion;
-
+import modelo.herramientas.*;
 
 
 public class Juego {
@@ -160,6 +160,13 @@ public class Juego {
     	for(int posicion = 0; posicion < materiales.size();posicion++) {
     		this.jugador.agregarMaterialAlInventario(materiales.get(posicion));
     	}
+    }
+    
+    public Herramienta crearHerramienta() {
+    	Herramienta herramientaNueva = this.mesaDeCrafteo.crearHerramienta();
+    	this.jugador.agregarHerramientaAlInventario(herramientaNueva);
+    	this.mesaDeCrafteo.quitarTodosLosMateriales();
+    	return herramientaNueva;
     }
     
     public Material[] getMaterialesDeMesa() {

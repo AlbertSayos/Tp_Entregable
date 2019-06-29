@@ -13,4 +13,12 @@ public class Casilla extends StackPane{
         ImageView imageView = new ImageView(new Image(("casilla.png"), 48, 0, true, true));
         getChildren().add(imageView);    
 	}
+	
+	public Casilla(int tam){
+		
+        setId("casilla");
+        
+        ImageView imageView = new ImageView(new Image(("casilla.png"), 70, 0, true, true));
+        getChildren().add(imageView);    
+	}
 }
