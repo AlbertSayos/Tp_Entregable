@@ -91,7 +91,7 @@ public class Principal extends Application {
 
             selectorHerramientas.agregar(jugador.getHerramientaEquipada().getClass().getSimpleName()+".png", 0);
            
-            empezarMusicaFondo();
+            //empezarMusicaFondo();
             
             primaryStage.show();
         }

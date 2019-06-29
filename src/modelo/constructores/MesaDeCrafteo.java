@@ -45,4 +45,8 @@ public class MesaDeCrafteo{
 		}
 		return materiales;
 	}
+	
+	public Material[] getMaterialesEnMesa() {
+		return this.mesa.getMateriales();
+	}
 }

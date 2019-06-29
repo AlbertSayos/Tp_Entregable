@@ -68,18 +68,35 @@ public class ControladorDeInventario {
     	
     }
     
-    public void moverMaterialAMesaCrafteo() {
-    	
+    public void moverMaterialAMesaCrafteo(int filaDeInventario, int columnaDeInventario, int posicionDeMesa) {
+    	juego.agregarMaterialDeJugadorALaMesaDeCrafteo(filaDeInventario, columnaDeInventario, posicionDeMesa);
+    	actualizarMesaCrafteo();
     	
     }
     
-    public void colocarNodoSobreMesaCrafteo(Node nodoDeMesaCrafteo) {
+    public void actualizarMesaCrafteo() {
+    	Material[] materiales = this.juego.getMaterialesDeMesa();
+    	int indice = 0;
+    	this.inventarioVista.gridMesaCraft().getChildren().clear();
+    	for(int fila = 0; fila < 3; fila++) {
+    		for(int col= 0; col < 3; col++) {
+    			StackPane casilla = new Casilla();
+    			System.out.println(this.rutaDeMaterial(materiales[col+fila]));
+    			
+    			casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[indice]), 38));         	
+    			this.inventarioVista.gridMesaCraft().add(casilla, col, fila); 
+    			indice++;
+    		}
+    	}
+    }
+    
+    /*public void colocarNodoSobreMesaCrafteo(Node nodoDeMesaCrafteo) {
     	if(this.inventarioVista.nodoSeleccionado() != null) {
     		this.inventarioVista.agregarNodoAMesaCraft(nodoDeMesaCrafteo, this.inventarioVista.nodoSeleccionado());
     		System.out.println("Nodo cambiado");
     	}
     }
-    
+    */
     public Herramienta crearHerramienta() {
         //return mesaCrafteo.construir();
     	return null;

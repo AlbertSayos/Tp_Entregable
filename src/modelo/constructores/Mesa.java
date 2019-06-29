@@ -37,4 +37,8 @@ public class Mesa {
 		return materialADevolver;
 	}
 	
+	public Material[] getMateriales() {
+		return this.mesa;
+	}
+	
 }

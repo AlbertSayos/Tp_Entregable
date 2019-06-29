@@ -18,16 +18,8 @@ public class GridMatriz extends GridPane{
             }
         }
         
-        setOnMouseClicked(e -> {
-            
-        	System.out.println("ON MOUSE CLICK CASILLERO");                
-        	this.nodoSeleccionado = e.getPickResult().getIntersectedNode();
-       
-        });	
+  
 	}
 	
-	public Node getNodoSeleccionado() {
-		return nodoSeleccionado;
-	}
 	
 }

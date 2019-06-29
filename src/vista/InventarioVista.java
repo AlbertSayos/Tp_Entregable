@@ -41,7 +41,19 @@ public class InventarioVista {
         
         VBox contenedorInventario = new VBox();
         
-        this.inventario = new GridMatriz(3, 9);       
+        this.inventario = new GridMatriz(3, 9);  
+        
+        this.inventario.setOnMouseClicked(e -> {
+        	
+        	Node nodoSeleccionado = e.getPickResult().getIntersectedNode();
+        	this.seleccionado = nodoSeleccionado.getParent();
+        	System.out.println("ON MOUSE CLICK CASILLERO"); 
+        	System.out.println(this.inventario.getRowIndex(nodoSeleccionado.getParent()));
+        	System.out.println(this.inventario.getColumnIndex(nodoSeleccionado.getParent()));     	
+        	
+        	
+        });	
+        
         Label titulo2 = new Label("Inventario");
         titulo2.setId("titulo-inventario");
         contenedorInventario.getChildren().addAll(this.inventario, titulo2);
@@ -57,7 +69,7 @@ public class InventarioVista {
         menu.setAlignment(Pos.CENTER);
         Boton cerrar = new Boton("Cerrar - [E]");
         
-        cerrar.setOnAction(e -> { escenario.mostrar("juego"); ; });
+        cerrar.setOnAction(e -> { escenario.mostrar("juego"); this.controlador.actualizarVistaInventario();; });
         menu.getChildren().addAll(cerrar);
 
         //SET DEL CONTENEDOR MAYOR
@@ -65,18 +77,13 @@ public class InventarioVista {
         inventarioVista.setCenter(contenedorVertical);
         
         inventarioVista.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.E) { escenario.mostrar("juego"); }
+            if (event.getCode() == KeyCode.E) { escenario.mostrar("juego"); this.selector.controlador().actualizarSelectorHerramienta();}
         });
 
     }
 
     public void establecerFondo(String fondo){
     	this.inventarioVista.setStyle("-fx-background-image: url('"+fondo+"')");
-    }
-
-
-    public Node nodoSeleccionado() {
-    	return this.seleccionado;
     }
     
 
@@ -99,8 +106,15 @@ public class InventarioVista {
             
         	System.out.println("ON MOUSE CLICK MESA");
         	if(this.seleccionado != null) {
-        		this.controlador.colocarNodoSobreMesaCrafteo(e.getPickResult().getIntersectedNode());
-            	this.seleccionado = null;
+        		int x = this.inventario.getColumnIndex(this.seleccionado);
+        		int y = this.inventario.getRowIndex(this.seleccionado);
+        		Node nodoMesaCraft = e.getPickResult().getIntersectedNode().getParent();
+        		int posicionDeMesa = this.mesaCraft.getChildren().indexOf(nodoMesaCraft);
+        		
+        		System.out.println("POS DE MESA: "+ posicionDeMesa);
+        		this.controlador.moverMaterialAMesaCrafteo(x, y, posicionDeMesa);
+        		this.controlador.actualizarVistaInventario();
+        		this.seleccionado = null;
         	}
         
         });

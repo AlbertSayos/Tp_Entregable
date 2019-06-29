@@ -30,7 +30,7 @@ public abstract class Herramienta {
     
     public void usar(Material unMaterial) {
         unMaterial.recibeGolpeDe(this);
-        if(unMaterial.estaDestruido()) throw new MaterialRotoException();
+        //if(unMaterial.estaDestruido()) throw new MaterialRotoException();
 
     }
 

@@ -133,11 +133,12 @@ public class ControladorDelJuego {
     			//this.actualizarInventario();
     		}
     		
+    		/*
     		if(this.juego.hayMaterialEnPosicion(colIndex, rowIndex)) {
         		AudioClip sonido = new AudioClip(getClass().getResource("/romper_diamante.mp3").toString());
         		sonido.play();
         	}
-    		
+    		*/
     	}
     	
     	

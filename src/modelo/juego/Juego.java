@@ -132,11 +132,14 @@ public class Juego {
     		System.out.println("Fuerea de rango");
     		return true;
     	}
-    	catch(MaterialRotoException ex) {
+    	
+    	if(materialObtenido.estaDestruido()) {
     		this.mapa.removerMaterialDelMapa(posicion);
     		System.out.println("mateiral roto");
+        	
     		return false;
     	}
+    	
     	
     	return true;
     }
@@ -157,5 +160,9 @@ public class Juego {
     	for(int posicion = 0; posicion < materiales.size();posicion++) {
     		this.jugador.agregarMaterialAlInventario(materiales.get(posicion));
     	}
+    }
+    
+    public Material[] getMaterialesDeMesa() {
+    	return this.mesaDeCrafteo.getMaterialesEnMesa();
     }
 }

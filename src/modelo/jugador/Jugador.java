@@ -11,7 +11,7 @@ public class Jugador {
 	public Herramienta herramientaEquipada;
 	public String imagen;
 	public Posicion posicionActual;
-	private Mesa mesaDeCrafteo;
+	private int herramientaActualPosicion;
 	private Inventario inventario;
 	public boolean estaPosicionado;
 	public Herramienta herramientaSeleccionada;
@@ -19,6 +19,17 @@ public class Jugador {
 	public Material materialSeleccionado;
 
 
+	public Jugador(){
+
+		this.herramientaEquipada = new HachaDeMadera();
+		this.herramientaActualPosicion = 0;
+		this.inventario = new Inventario();
+		this.posicionActual = new Posicion(0,0);
+		this.inventario.agregarHerramienta(new HachaDeMadera());
+		this.estaPosicionado = false;
+		this.herramientaSeleccionada = new HachaDeMadera();
+
+	}
 
 	public Herramienta getHerramientaEquipada() {
 		return herramientaEquipada;
@@ -79,19 +90,18 @@ public class Jugador {
 
 	public void golpearMaterial(Material material, Posicion unaPosicion) {
 
-		if(!puedeGolpear(unaPosicion)) throw new GolpeFueraDeRangoException();
-		try {
-			if (this.herramientaEquipada == null) {
-				throw new JugarSinHerramientaEquipadaException();
-			}
-			this.herramientaEquipada.usar(material);
-		} catch (MaterialRotoException ex) {
+		if(!puedeGolpear(unaPosicion)) throw new GolpeFueraDeRangoException();		
+		if (this.herramientaEquipada == null) {
+			throw new JugarSinHerramientaEquipadaException();
+		}
+		
+		this.herramientaEquipada.usar(material);
+		if(material.estaDestruido())
 			this.inventario.agregarMaterial(material);
 			
-			throw ex;
-		}
 		if(this.herramientaEquipada.estaRota()) {
 			this.herramientaEquipada = null;
+			this.quitarHerramientaActualDelInventario();
 			throw new JugarSinHerramientaEquipadaException();
 		}
 	}
@@ -108,6 +118,7 @@ public class Jugador {
 	
 	
 	public void equiparHerramientaEnPosicion(int pos) {
+		this.herramientaActualPosicion = pos;
 		this.herramientaEquipada = this.inventario.obtenerHerramientaEnPosicion(pos);
 	}
 /*
@@ -117,17 +128,6 @@ public class Jugador {
 
     }
 */
-	public Jugador(){
-
-		this.herramientaEquipada = new HachaDeMadera();
-		this.mesaDeCrafteo = new Mesa(9);
-		this.inventario = new Inventario();
-		this.posicionActual = new Posicion(0,0);
-		this.inventario.agregarHerramienta(new HachaDeMadera());
-		this.estaPosicionado = false;
-		this.herramientaSeleccionada = new HachaDeMadera();
-
-	}
 
 /*
 	public boolean inventarioContieneHerramienta(Herramienta herramienta) {
@@ -200,6 +200,10 @@ public class Jugador {
 		return this.inventario.quitarHerramientaDePosicion(posicion);
 	}
 
+	public Herramienta quitarHerramientaActualDelInventario() {
+		return this.inventario.quitarHerramientaDePosicion(this.herramientaActualPosicion);
+	}
+	
 	public boolean puedeGolpear(Posicion posicion){
 
         Posicion derecha, izquierda, arriba, abajo;
