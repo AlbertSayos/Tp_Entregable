@@ -1,8 +1,11 @@
 package modelo.jugador;
 
 import modelo.materiales.*;
-import modelo.materiales.Material;
+import modelo.herramientas.*;
+import modelo.posicion.*;
 import org.junit.Test;
+
+import junit.framework.Assert;
 
 import java.util.ArrayList;
 
@@ -25,5 +28,7 @@ public class InventarioTest {
 
 
     }
+    
+    
 
 }
