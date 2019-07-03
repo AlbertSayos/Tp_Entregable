@@ -1,7 +1,6 @@
 package controlador;
 
 
-import modelo.constructores.Mesa;
 import modelo.juego.*;
 import modelo.herramientas.*;
 import modelo.materiales.*;
