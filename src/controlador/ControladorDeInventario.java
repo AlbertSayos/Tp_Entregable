@@ -53,7 +53,7 @@ public class ControladorDeInventario {
             for(int col = 0; col < 9; col++) {
             	
             	StackPane casilla = new Casilla();
-            	System.out.println(this.rutaDeMaterial(materiales[col][fila]));
+            	//System.out.println(this.rutaDeMaterial(materiales[col][fila]));
             	casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[col][fila]), 38));         	
                 inventario.add(casilla,  col, fila);;
             }

@@ -146,7 +146,8 @@ public class Juego {
 
     public void agregarMaterialDeJugadorALaMesaDeCrafteo(int filaDeInventario, int columnaDeInventario, int posicionDeMesa) {
     	Material unMaterial = this.jugador.quitarMaterialDelInventario(filaDeInventario, columnaDeInventario);
-    	mesaDeCrafteo.agregarMaterialEnPosicion(unMaterial, posicionDeMesa);
+    	Material materialRespuesta = mesaDeCrafteo.agregarMaterialEnPosicion(unMaterial, posicionDeMesa);
+    	this.jugador.agregarMaterialAlInventario(materialRespuesta);
     }
     
     public void agregarMaterialDeLaMesaDeCrafteoAlJugador(int filaDeInventario, int columnaDeInventario, int posicionDeMesa) {

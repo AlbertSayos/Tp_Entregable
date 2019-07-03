@@ -17,8 +17,8 @@ public class MesaDeCrafteo{
 		//constructores = new ConstructorDeHerramientas[cantidad];
 	}
 	
-	public void agregarMaterialEnPosicion(Material unMaterial,int unaPosicion) {
-		mesa.agregarMaterialEnPosicion(unMaterial, unaPosicion);
+	public Material agregarMaterialEnPosicion(Material unMaterial,int unaPosicion) {
+		return mesa.agregarMaterialEnPosicion(unMaterial, unaPosicion);
 	}
 	
 	public Herramienta crearHerramienta(){

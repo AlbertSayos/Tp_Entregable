@@ -17,8 +17,12 @@ public class Mesa {
 	}
 
 
-	public void agregarMaterialEnPosicion(Material unMaterial,int unaPosicion) {
-		mesa[unaPosicion] = unMaterial;
+	public Material agregarMaterialEnPosicion(Material unMaterial,int unaPosicion) {
+		if(mesa[unaPosicion].getClass() == SinMaterial.class) {
+			mesa[unaPosicion] = unMaterial;
+			return new SinMaterial();
+		}
+		return unMaterial;
 	}
 
 

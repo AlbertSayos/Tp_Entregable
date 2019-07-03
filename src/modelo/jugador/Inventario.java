@@ -68,7 +68,8 @@ public class Inventario {
     public Material quitarMaterialDePosicion(int posicionFila, int posicionColumna) {
     	Material materialADevolver =  materiales[posicionFila][posicionColumna];
     	if(materialADevolver.esEquivalante(sinMaterial)) {
-    		return null;
+    		//return null;
+    		return new SinMaterial();
     	}
     	materiales[posicionFila][posicionColumna] = new SinMaterial();
     	return materialADevolver;
