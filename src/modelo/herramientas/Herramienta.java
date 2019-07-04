@@ -1,10 +1,11 @@
 package modelo.herramientas;
 
+import modelo.jugador.Objeto;
 import modelo.materiales.*;
 import modelo.excepciones.*;
 
 
-public abstract class Herramienta {
+public abstract class Herramienta implements Objeto {
 
 	protected String identidad;
     protected float durabilidad;

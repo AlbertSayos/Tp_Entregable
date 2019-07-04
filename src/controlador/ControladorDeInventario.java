@@ -40,12 +40,12 @@ public class ControladorDeInventario {
     public void actualizarVistaInventario() {
     	
     	Material[][] materiales = this.juego.getJugador().obtenerInventario().materiales();
+    	Herramienta[] herramientas = this.juego.getJugador().getHerramientas();
     	GridPane inventario = this.inventarioVista.gridInventario();
     	inventario.getChildren().clear();
-     	
+
     	for(int fila = 0; fila < 3; fila++) {
             for(int col = 0; col < 9; col++) {
-            	
             	StackPane casilla = new Casilla();
             	casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[col][fila]), 38));
                 inventario.add(casilla,  col, fila);
@@ -71,8 +71,8 @@ public class ControladorDeInventario {
     	for(int fila = 0; fila < 3; fila++) {
     		for(int col= 0; col < 3; col++) {
     			StackPane casilla = new Casilla();
-    			casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[indice]), 38));         	
-    			this.inventarioVista.gridMesaCraft().add(casilla, col, fila); 
+    			casilla.getChildren().add(this.inventarioVista.getImagen(this.rutaDeMaterial(materiales[indice]), 38));
+    			this.inventarioVista.gridMesaCraft().add(casilla, col, fila);
     			indice++;
     		}
     	}

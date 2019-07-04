@@ -1,10 +1,9 @@
 module Algocraft {
 
-
     requires javafx.fxml;
-    requires javafx.graphics;
-    requires javafx.controls;
     requires javafx.media;
+    requires javafx.controls;
+    requires javafx.graphics;
 
     opens vista;
 

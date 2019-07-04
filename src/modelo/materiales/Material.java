@@ -2,10 +2,11 @@ package modelo.materiales;
 
 import modelo.excepciones.MaterialRotoException;
 import modelo.herramientas.*;
+import modelo.jugador.Objeto;
 import modelo.posicion.*;
 
 
-public abstract class Material{
+public abstract class Material implements Objeto {
 
 	//Atributos:
 	protected String identidad;

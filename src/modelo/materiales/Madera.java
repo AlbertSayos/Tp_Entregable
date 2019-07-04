@@ -8,7 +8,7 @@ public class Madera extends Material{
 	public Madera(){
 		this.durabilidad = 10;
 		this.identidad = "1";
-		//this.imagen = "madera.png";
+		//this.imagen = "Madera.png";
 	}
 
 	

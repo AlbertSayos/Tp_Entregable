@@ -7,7 +7,6 @@ import modelo.juego.Juego;
 import modelo.posicion.Posicion;
 import vista.JuegoVista;
 import modelo.materiales.*;
-import javafx.scene.media.*;
 
 
 public class ControladorDelJuego {
@@ -15,10 +14,10 @@ public class ControladorDelJuego {
     private Juego juego;
     private JuegoVista juegoVista;
     private static String IMAGEN_JUGADOR = "jugador.png";
-    private static String IMAGEN_MADERA = "madera.png";
-    private static String IMAGEN_PIEDRA = "piedra.png";
-    private static String IMAGEN_METAL = "metal.png";
-    private static String IMAGEN_DIAMANTE = "diamante.png";
+    private static String IMAGEN_MADERA = "Madera.png";
+    private static String IMAGEN_PIEDRA = "Piedra.png";
+    private static String IMAGEN_METAL = "Metal.png";
+    private static String IMAGEN_DIAMANTE = "Diamante.png";
     private static String IMAGEN_VACIO = "SinMaterial.png";
 
 

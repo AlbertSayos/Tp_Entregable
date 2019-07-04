@@ -26,13 +26,17 @@ public class Inventario {
 
         this.herramientas = new Herramienta[factorFila];
         this.materiales = new Material[factorFila][factorColumna];
+
         for(int fila = 0;fila < factorFila;fila++) {
     		for(int columna = 0; columna < factorColumna;columna++) {
+
     			this.materiales[fila][columna] = new SinMaterial();
     		}
     	}
         for(int posicion = 0; posicion < factorFila;posicion++) {
+
         	this.herramientas[posicion] = new SinHerramienta();
+
     	}
     }
 
@@ -44,11 +48,11 @@ public class Inventario {
 
     
     public void agregarHerramienta(Herramienta herramienta) {
+
     	for(int posicion = 0; posicion < factorFila;posicion++) {
-    		if(herramientas[posicion].esEquivalente(sinHerramienta)) {
+
     			herramientas[posicion] = herramienta;
     			break;
-    		}
     			
     	}
     }
@@ -56,6 +60,7 @@ public class Inventario {
 
     public void agregarMaterialEnPosicion(Material material, int posFila, int posColumna) {
     	materiales[posFila][posColumna] = material;
+
     }
 
     
