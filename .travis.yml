@@ -1,22 +1,4 @@
 language: java
-jdk:
-  - oraclejdk8
-
+jdk: oraclejdk8
 install: ant
-
-script:
-  - ant integracion-continua
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
-ignore:
-  - module-info.java
-
-notifications:
-  email:
-    recipients:
-      - dledesma@fi.uba.ar
-      - rocioarrua95@gmail.com
-      - alberto.sayos.daniel@gmail.com
-      - joseph_vv@hotmail.com
-    on_failure: always
+script: ant integracion-continua
