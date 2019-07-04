@@ -7,6 +7,7 @@ import modelo.posicion.*;
 import modelo.mapas.*;
 
 public class Jugador {
+
 	
 	public Herramienta herramientaEquipada;
 	public String imagen;
@@ -15,7 +16,6 @@ public class Jugador {
 	private Inventario inventario;
 	public boolean estaPosicionado;
 	public Herramienta herramientaSeleccionada;
-	//public Mapa mapa;
 	public Material materialSeleccionado;
 
 
@@ -121,27 +121,6 @@ public class Jugador {
 		this.herramientaActualPosicion = pos;
 		this.herramientaEquipada = this.inventario.obtenerHerramientaEnPosicion(pos);
 	}
-/*
-    public Inventario getInventario() {
-
-		return this.inventario;
-
-    }
-*/
-
-/*
-	public boolean inventarioContieneHerramienta(Herramienta herramienta) {
-
-		return this.inventario.contieneHerramienta(herramienta);
-
-	}
-
-
-	public boolean inventarioContieneMaterial(Material material) {
-
-		return this.inventario.contieneMaterial(material);
-	}
-*/
 
 
 	public int getPosicionColumna() {
@@ -157,20 +136,6 @@ public class Jugador {
 
 	}
 
-/*
-	public void seleccionarMaterial(int posicion) {
-
-		this.materialSeleccionado = this.inventario.seleccionarMaterial(posicion);
-
-	}
-
-
-	public void cambiarHerramienta(int posicion) {
-
-		this.herramientaEquipada = this.inventario.seleccionarHerramienta(posicion);
-
-	}*/
-
 
 	public void agregarMaterialAInventarioEnPosicion(Material material,int fila, int columna) {
 
@@ -183,31 +148,46 @@ public class Jugador {
 		this.inventario.agregarHerramientaEnPosicion(herramienta,posicion);
 
 	}
-	
+
+
 	public void agregarMaterialAlInventario(Material material) {
+
 		this.inventario.agregarMaterial(material);
-	}
-	
-	public void agregarHerramientaAlInventario(Herramienta herramienta) {
-		this.inventario.agregarHerramienta(herramienta);
-	}
-	
-	public Material quitarMaterialDelInventario(int posicionFila ,int posicionColumna) {
-		return this.inventario.quitarMaterialDePosicion(posicionFila, posicionColumna);
-	}
-	
-	public Herramienta quitarHerramientaDelInventario(int posicion) {
-		return this.inventario.quitarHerramientaDePosicion(posicion);
+
 	}
 
-	public Herramienta quitarHerramientaActualDelInventario() {
-		return this.inventario.quitarHerramientaDePosicion(this.herramientaActualPosicion);
+
+	public void agregarHerramientaAlInventario(Herramienta herramienta) {
+
+		this.inventario.agregarHerramienta(herramienta);
+
 	}
+
+	
+	public Material quitarMaterialDelInventario(int posicionFila ,int posicionColumna) {
+
+		return this.inventario.quitarMaterialDePosicion(posicionFila, posicionColumna);
+
+	}
+
+
+	public Herramienta quitarHerramientaDelInventario(int posicion) {
+
+		return this.inventario.quitarHerramientaDePosicion(posicion);
+
+	}
+
+
+	public Herramienta quitarHerramientaActualDelInventario() {
+
+		return this.inventario.quitarHerramientaDePosicion(this.herramientaActualPosicion);
+
+	}
+
 	
 	public boolean puedeGolpear(Posicion posicion){
 
         Posicion derecha, izquierda, arriba, abajo;
-
         derecha = miDerecha();
         izquierda = miIzquierda();
         arriba = miArriba();
@@ -216,10 +196,15 @@ public class Jugador {
         return posicion.equals(derecha) || posicion.equals(izquierda) || posicion.equals(arriba) || posicion.equals(abajo); 
 
     }
+
 	
 	public Herramienta[] getHerramientas() {
+
 		return this.inventario.getHerramientas();
+
 	}
+
+
 }
 
 

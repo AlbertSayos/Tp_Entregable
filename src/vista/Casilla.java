@@ -6,11 +6,13 @@ import javafx.scene.layout.*;
 
 public class Casilla extends StackPane{
 
+    private static String IMAGEN_CASILLA = "casilla.png";
+
 	public Casilla(){
 		
         setId("casilla");
         
-        ImageView imageView = new ImageView(new Image(("casilla.png"), 48, 0, true, true));
+        ImageView imageView = new ImageView(new Image((IMAGEN_CASILLA), 48, 0, true, true));
         getChildren().add(imageView);    
 	}
 	
@@ -18,7 +20,7 @@ public class Casilla extends StackPane{
 		
         setId("casilla");
         
-        ImageView imageView = new ImageView(new Image(("casilla.png"), 70, 0, true, true));
+        ImageView imageView = new ImageView(new Image((IMAGEN_CASILLA), 70, 0, true, true));
         getChildren().add(imageView);    
 	}
 }

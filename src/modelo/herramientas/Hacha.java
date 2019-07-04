@@ -8,16 +8,17 @@ public abstract class Hacha extends Herramienta{
 	
 	@Override
 	public void desgastarse() {
+
 		durabilidad -= fuerza*factorDeDesgaste;
-		/*
-		if(durabilidad <0) durabilidad = 0; // ENTONCES SE ROMPE LA HERRAMIENTA
-											// FALTA IMPLEMENTAR ESO
-											 * */									
+
 	}
-	
+
+
 	public void golpear(Madera unaMadera) {
+
 		unaMadera.reducirDurabilidad(this.getFuerza());
 		this.desgastarse();
+
 	}
 	
 	public void golpear(Piedra unaPiedra) {

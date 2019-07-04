@@ -23,49 +23,32 @@ public class InventarioVista {
     public InventarioVista(Escenario escenario, SelectorDeHerramientas selector) {
 
     	this.selector = selector;
-    			
-    	//CREACION INVENTARIO VISTA PRINCIPAL
-        inventarioVista = new BorderPane();
+    	inventarioVista = new BorderPane();
         inventarioVista.setId("background");
         this.establecerFondo("crafteo.png");
         
-        //CREACION CONTENEDOR VERTICAL Q IRA DENTRO DE LA VISTA PRINCIPAL
-        //DE inventarioVista 
         VBox contenedorVertical = new VBox();
-        
         contenedorVertical.setAlignment(Pos.CENTER);
         contenedorVertical.setId("contenedorVertical-casillas");
         Label titulo1 = new Label("Crafting");
         titulo1.setId("titulo-inventario");
         
-        //CONTENEDOR INVENTARIO
-        
+
         VBox contenedorInventario = new VBox();
-        
-        this.inventario = new GridMatriz(3, 9);  
-        
+        this.inventario = new GridMatriz(3, 9);
         this.inventario.setOnMouseClicked(e -> {
-        	
         	Node nodoSeleccionado = e.getPickResult().getIntersectedNode();
         	this.seleccionado = nodoSeleccionado.getParent();
-        	System.out.println("ON MOUSE CLICK CASILLERO"); 
-        	System.out.println(this.inventario.getRowIndex(nodoSeleccionado.getParent()));
-        	System.out.println(this.inventario.getColumnIndex(nodoSeleccionado.getParent()));     	
-        	
-        	
-        });	
+        });
         
         Label titulo2 = new Label("Inventario");
         titulo2.setId("titulo-inventario");
         contenedorInventario.getChildren().addAll(this.inventario, titulo2);
         
-        // CONTENEDOR MESA CRAFTEO
-        HBox contenedorMesaDeCrafteo = crearContenedorDeMesaCrafteo();	
+        HBox contenedorMesaDeCrafteo = crearContenedorDeMesaCrafteo();
         
-        //SE AÑADEN LAS COSAS A CONTENEDEDOR VERTICAL 
         contenedorVertical.getChildren().addAll(titulo1, contenedorMesaDeCrafteo, titulo2, contenedorInventario);
 
-        // TOP
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
         Boton cerrar = new Boton("Cerrar - [E]");
@@ -78,7 +61,6 @@ public class InventarioVista {
         
         menu.getChildren().addAll(cerrar);
 
-        //SET DEL CONTENEDOR MAYOR
         inventarioVista.setTop(menu);
         inventarioVista.setCenter(contenedorVertical);
         
@@ -93,7 +75,9 @@ public class InventarioVista {
     }
 
     public void establecerFondo(String fondo){
+
     	this.inventarioVista.setStyle("-fx-background-image: url('"+fondo+"')");
+
     }
     
 
@@ -109,7 +93,6 @@ public class InventarioVista {
         
         Boton crear = new Boton("Crear");
         crear.setOnAction(e -> {
-        	//is.selector.controlador().agregarNuevaHerramienta();
             this.controlador.crearHerramienta(resultado);
         	this.selector.controlador().actualizarSelectorHerramienta();
         	
@@ -117,14 +100,11 @@ public class InventarioVista {
         
         this.mesaCraft.setOnMouseClicked(e -> {
             
-        	System.out.println("ON MOUSE CLICK MESA");
         	if(this.seleccionado != null) {
         		int x = this.inventario.getColumnIndex(this.seleccionado);
         		int y = this.inventario.getRowIndex(this.seleccionado);
         		Node nodoMesaCraft = e.getPickResult().getIntersectedNode().getParent();
         		int posicionDeMesa = this.mesaCraft.getChildren().indexOf(nodoMesaCraft);
-        		
-        		System.out.println("POS DE MESA: "+ posicionDeMesa);
         		this.controlador.moverMaterialAMesaCrafteo(x, y, posicionDeMesa);
         		this.controlador.actualizarVistaInventario();
         		this.seleccionado = null;
@@ -142,18 +122,22 @@ public class InventarioVista {
 
 
     public ImageView getImagen(String nombre, int tamanio) {
+
         return new ImageView(new Image((nombre), tamanio, 0, true, true));
+
     }
 
 
     public void setControlador(ControladorDeInventario controladorDeInventario) {
+
         this.controlador = controladorDeInventario;
+
     }
     
     public void agregarNodoAMesaCraft(Node nodoABorrar, Node nodoNuevo) {
+
     	int col= GridPane.getColumnIndex(nodoABorrar);
     	int row = GridPane.getRowIndex(nodoABorrar);
-    	
     	this.mesaCraft.getChildren().remove(nodoABorrar);
     	this.mesaCraft.add(nodoNuevo, col, row);
     	
@@ -174,49 +158,6 @@ public class InventarioVista {
     public Pane getPane() {
         return this.inventarioVista;
     }
-    
-    /*  
-    private void agregarElemento(GridPane inventario, String elemento, int fila, int columna) {
-
-        System.out.println("En inventario vista agregarElemento recibe como elemento: "+elemento);
-        if (elemento == null) return;
-        StackPane stack = new StackPane();
-        Image itemImage = new Image(elemento, 38, 0, true, true);
-        ImageView imageView = new ImageView(itemImage);
-        imageView.setId(String.valueOf(elemento.charAt(0)));
-        stack.getChildren().add(imageView);
-        inventario.add(stack, fila, columna);
-        stack.setId("casilla");
-        imageView.setOnMouseClicked(e -> { this.seleccionado = e.getPickResult().getIntersectedNode(); });
-        stack.setOnMouseReleased(e -> {
-            if (this.seleccionado != null) {
-                stack.getChildren().clear();
-                stack.getChildren().add(this.seleccionado);
-                this.seleccionado = null;
-            }
-        });
-    }
-    
-    /*
-   public void agregar(String elemento, int fila, int columna) {
-        this.agregarElemento(this.inventario, elemento, fila, columna);
-    }
-
-
-    public void limpiar() {
-
-        this.inventario.getChildren().clear();
-        for(int fila = 0; fila < 3; fila++) {
-            for(int col = 0; col < 9; col++) {
-                agregarCasilla(this.inventario, col, fila);
-            }
-        }
-        System.out.println("****LIMPIO MESA ***");
-        this.mesa = this.crearMesa();
-    }
-*/
-
-
   
 
 }

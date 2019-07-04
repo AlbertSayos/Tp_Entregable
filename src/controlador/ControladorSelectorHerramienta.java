@@ -12,10 +12,12 @@ import vista.*;
 
 
 public class ControladorSelectorHerramienta {
-	
+
+
 	Jugador jugador;
 	SelectorDeHerramientas selector;
-	
+
+
 	public ControladorSelectorHerramienta(Jugador jugador, SelectorDeHerramientas selector){
 		this.jugador = jugador;
 		this.selector = selector;
@@ -24,9 +26,8 @@ public class ControladorSelectorHerramienta {
 	}
 	
 	public void actualizarSelectorHerramienta() {
+
 		Herramienta[] herramientas = this.jugador.getHerramientas();
-		System.out.println(herramientas.length);
-		//selector.limpiar();
 		selector.getChildren().clear();
 		
 		for(int i = 0; i< herramientas.length; i++ ) {

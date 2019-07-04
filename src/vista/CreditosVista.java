@@ -13,6 +13,7 @@ public class CreditosVista {
 
     BorderPane pane;
     Escenario escenario;
+    private static String IMAGEN_LOGO_CREDITOS = "logoCreditos.png";
 
     public CreditosVista(Escenario escenario) {
         this.escenario = escenario;
@@ -30,7 +31,7 @@ public class CreditosVista {
         hBox.getChildren().add(titulo);
         VBox contenedor = new VBox();
         contenedor.setAlignment(Pos.TOP_CENTER);
-        ImageView logo = new ImageView(new Image("logocreditos.png", 400, 0, true, true));
+        ImageView logo = new ImageView(new Image(IMAGEN_LOGO_CREDITOS, 400, 0, true, true));
         StackPane r = new StackPane();
         r.setId("logo-creditos");
         r.setMaxHeight(60);

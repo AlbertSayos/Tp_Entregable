@@ -20,8 +20,5 @@ public class Metal extends Material {
 		return 'M';
 	}
 
-	@Override
-	public void golpear(Golpe golpe) {
 
-	}
 }

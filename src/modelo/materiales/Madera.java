@@ -29,10 +29,6 @@ public class Madera extends Material{
 		return 'm';
 	}
 
-	@Override
-	public void golpear(Golpe golpe) {
-
-	}
 
 
 }

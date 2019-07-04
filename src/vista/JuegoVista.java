@@ -18,36 +18,26 @@ public class JuegoVista {
     public JuegoVista(Escenario escenario, SelectorDeHerramientas selectorHerramientas, InventarioVista inventario) {
 
     	this.inventario = inventario ;
-    	
         main = new BorderPane();
         this.mapa = new GridPane();
         mapa.setAlignment(Pos.CENTER);
-
         this.mapa.setStyle("-fx-background-image: url('fondo1.png')");
 
         HBox menu = new HBox();
         menu.setAlignment(Pos.CENTER);
-        
-        //BOTON INVENTARIO
         Boton btnInventario = new Boton("Inventario - [E]");
         btnInventario.setOnAction(e ->{escenario.mostrar("inventario"); this.inventario.controlador().actualizarVistaInventario();});
-        
         Boton btnMenu = new Boton("Menu - [ESC]");
         btnMenu.setOnAction(e -> escenario.mostrar("entrada"));
         menu.getChildren().addAll(btnMenu, btnInventario);
 
         menu.setStyle("-fx-background-image: url('fondo1.png')");
-       
         main.setStyle("-fx-background-image: url('fondo1.png')");
-        // Main game
-
         main.setTop(menu);
         main.setCenter(mapa);
         main.setBottom(selectorHerramientas);
         MoverJugadorEventHandler jugadorEventH = new MoverJugadorEventHandler(this, this.mapa, escenario);
         main.setOnKeyPressed(jugadorEventH);
-  
-        
 
         ClickMaterialJuegoEventHandler clickMaterialH = new ClickMaterialJuegoEventHandler(this, this.mapa);
         mapa.setOnMouseClicked(clickMaterialH);
@@ -61,7 +51,6 @@ public class JuegoVista {
 
     public void agregarElemento(String nombreImagen, int fila, int col) {
 
-        //System.out.println("La imagen que se esta agregando en mapa es: "+nombreImagen);
         ImageView img = new ImageView(new Image(nombreImagen, 46, 0, true, true));
         mapa.add(img, col, fila);
 

@@ -12,14 +12,18 @@ import java.util.ArrayList;
 import java.util.ArrayList;
 
 public class Inventario {
+
+
 	protected Herramienta[] herramientas;
 	protected Material[][] materiales;
 	static private int factorColumna = 3;
 	static private int factorFila = 9;
 	static private Material sinMaterial =new SinMaterial();
 	static private Herramienta sinHerramienta = new SinHerramienta();
-	
+
+
 	public Inventario() {
+
         this.herramientas = new Herramienta[factorFila];
         this.materiales = new Material[factorFila][factorColumna];
         for(int fila = 0;fila < factorFila;fila++) {
@@ -37,6 +41,7 @@ public class Inventario {
     	
     	herramientas[unaPosicion] = herramienta;
     }
+
     
     public void agregarHerramienta(Herramienta herramienta) {
     	for(int posicion = 0; posicion < factorFila;posicion++) {
@@ -48,9 +53,11 @@ public class Inventario {
     	}
     }
 
+
     public void agregarMaterialEnPosicion(Material material, int posFila, int posColumna) {
     	materiales[posFila][posColumna] = material;
     }
+
     
     public void agregarMaterial(Material material) {
     	//Material sinMaterial = new SinMaterial();
@@ -64,6 +71,7 @@ public class Inventario {
     		}
     	}
     }
+
     
     public Material quitarMaterialDePosicion(int posicionFila, int posicionColumna) {
     	Material materialADevolver =  materiales[posicionFila][posicionColumna];
@@ -72,122 +80,39 @@ public class Inventario {
     		return new SinMaterial();
     	}
     	materiales[posicionFila][posicionColumna] = new SinMaterial();
+
     	return materialADevolver;
     }
-    
+
+
     public Herramienta quitarHerramientaDePosicion(int posicion) {
+
     	Herramienta herramientaADevolver =  herramientas[posicion];
     	if(herramientaADevolver.esEquivalente(sinHerramienta)) {
     		return null;
     	}
     	herramientas[posicion] = new SinHerramienta();
+
     	return herramientaADevolver;
     }
     
     public Material[][] materiales() {
+
     	return this.materiales;
+
     }
     
     public Herramienta[] getHerramientas() {
-    	return this.herramientas;
+
+		return this.herramientas;
+
     }
     
     public Herramienta obtenerHerramientaEnPosicion(int pos) {
-    	return herramientas[pos];
-    }
-    /*
-    public boolean contieneHerramienta(Herramienta herramienta) {
+
+		return herramientas[pos];
 
     }
 
-
-    public boolean contieneMaterial(Material material) {
-
-    }
-
-
-    public Material seleccionarMaterial(int posicion) {
-
-    }
-
-
-    public Herramienta seleccionarHerramienta(int posicion) {
-
-    }
-
-
-    public ArrayList<Herramienta> getHerramientas(){
-
-    }
-
-
-    public ArrayList<Material> getMateriales() {
-     
-    }
-//inventario que estaba antes	
-
-    private ArrayList<Herramienta> herramientas;
-    private ArrayList<Material> materiales;
-    private int posicionHerramientaSeleccionada;
-
-
-    public Inventario() {
-        this.herramientas = new ArrayList<Herramienta>();
-        this.materiales = new ArrayList<Material>();
-        this.posicionHerramientaSeleccionada = 0;
-
-    }
-
-
-    public void agregarHerramienta(Herramienta herramienta) {
-        this.herramientas.add(herramienta);
-    }
-
-
-    public void agregarMaterial(Material material) {
-        this.materiales.add(material);
-    }
-
-
-    public boolean contieneHerramienta(Herramienta herramienta) {
-
-        return this.herramientas.contains(herramienta);
-
-    }
-
-
-    public boolean contieneMaterial(Material material) {
-
-       return materiales.contains(material);
-
-    }
-
-
-    public Material seleccionarMaterial(int posicion) {
-        //No se puede acceder a un indice fuera del tamanio de materiales.
-        return materiales.get(posicion);
-
-    }
-
-
-    public Herramienta seleccionarHerramienta(int posicion) {
-        //No se puede acceder a un indice fuera del tamanio de herramientas.
-        this.posicionHerramientaSeleccionada = posicion;
-        return herramientas.get(posicion);
-
-    }
-
-
-    public ArrayList<Herramienta> getHerramientas(){
-
-        return this.herramientas;
-
-    }
-
-
-    public ArrayList<Material> getMateriales() {
-        return materiales;
-    }
-*/
 
 }

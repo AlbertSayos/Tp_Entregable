@@ -100,8 +100,8 @@ public class Mapa{
 		if (this.posicionInvalida(unaPosicion)) return false;
 		this.terreno.remove(unJugador.miPosicion());
 		unJugador.moverAUnaPosicion(unaPosicion);
-		System.out.println("jugador se movio");
 		this.terreno.put(unaPosicion, new SinMaterial());
+
 		return true;
 
 	}

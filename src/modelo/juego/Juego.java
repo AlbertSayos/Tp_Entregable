@@ -19,6 +19,8 @@ public class Juego {
     public Jugador jugador;
     public MovimientosJugador movs;
     protected MesaDeCrafteo mesaDeCrafteo;
+
+
     public Juego(){
 
         iniciar();
@@ -116,27 +118,25 @@ public class Juego {
     }
     
     public boolean jugadorGolpeaEnPosicion(int x, int y) {
+
     	Posicion posicion = new Posicion(x,y);
-    	
     	Material materialObtenido = this.mapa.obtenerObjeto(posicion);
+
     	if(materialObtenido == null) return true;
     	
     	try{
     		this.jugador.golpearMaterial(materialObtenido, posicion);
     	}
     	catch(JugarSinHerramientaEquipadaException ex) {
-    		System.out.println("herramienta rota");
     		return true;
     	}
     	catch (GolpeFueraDeRangoException ex) {
-    		System.out.println("Fuerea de rango");
     		return true;
     	}
     	
     	if(materialObtenido.estaDestruido()) {
     		this.mapa.removerMaterialDelMapa(posicion);
-    		System.out.println("mateiral roto");
-        	
+
     		return false;
     	}
     	
@@ -145,18 +145,22 @@ public class Juego {
     }
 
     public void agregarMaterialDeJugadorALaMesaDeCrafteo(int filaDeInventario, int columnaDeInventario, int posicionDeMesa) {
-    	Material unMaterial = this.jugador.quitarMaterialDelInventario(filaDeInventario, columnaDeInventario);
+
+        Material unMaterial = this.jugador.quitarMaterialDelInventario(filaDeInventario, columnaDeInventario);
     	Material materialRespuesta = mesaDeCrafteo.agregarMaterialEnPosicion(unMaterial, posicionDeMesa);
     	this.jugador.agregarMaterialAlInventario(materialRespuesta);
+
     }
     
     public void agregarMaterialDeLaMesaDeCrafteoAlJugador(int filaDeInventario, int columnaDeInventario, int posicionDeMesa) {
+
     	Material unMaterial = this.mesaDeCrafteo.quitarMaterialEnPosicion(posicionDeMesa);
     	this.jugador.agregarMaterialAInventarioEnPosicion(unMaterial, filaDeInventario, columnaDeInventario);
     	
     }
     
     public void agregarTodosLosMaterialesDeLaMesaAlinventario() {
+
     	List<Material> materiales = this.mesaDeCrafteo.quitarTodosLosMateriales();
     	for(int posicion = 0; posicion < materiales.size();posicion++) {
     		this.jugador.agregarMaterialAlInventario(materiales.get(posicion));
@@ -164,10 +168,12 @@ public class Juego {
     }
     
     public Herramienta crearHerramienta() {
+
     	Herramienta herramientaNueva = this.mesaDeCrafteo.crearHerramienta();
     	this.jugador.agregarHerramientaAlInventario(herramientaNueva);
     	this.mesaDeCrafteo.quitarTodosLosMateriales();
     	return herramientaNueva;
+
     }
     
     public Material[] getMaterialesDeMesa() {

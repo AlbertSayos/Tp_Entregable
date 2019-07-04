@@ -33,18 +33,12 @@ public abstract class Material{
 		return identidad;
 	}
 
-	public Posicion getPosicion(){
-
-		return this.posicion;
-
-	}
+	public Posicion getPosicion(){ return this.posicion; }
 
 	public String getRutaImagen(){ return this.imagen; }
 
     public abstract Character getIdentificador();
 
-    public abstract void golpear(Golpe golpe);
-    
     public boolean estaDestruido() {
     	return (durabilidad <=0);
     }

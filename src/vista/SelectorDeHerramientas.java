@@ -22,10 +22,8 @@ public class SelectorDeHerramientas extends GridPane {
         setOnMouseClicked(e -> {
             int posicion = getPosicion(e);
             
-            System.out.println(posicion+" MI POSSS");
             controlador.cambiarHerramientaEquipada(posicion);
-            	//jugador.cambiarHerramienta(posicion);
-            
+
             
         });	
         
@@ -33,20 +31,24 @@ public class SelectorDeHerramientas extends GridPane {
 
     public void agregar(String elemento, int pos) {
 
-        System.out.println("el elemento es: "+elemento);
         ImageView imageView = new ImageView(new Image((elemento), 38, 0, true, true));
         this.add(imageView, pos, 0);
+
     }
 
     public int getPosicion(MouseEvent event) {
+
         Node nodoClickeado = event.getPickResult().getIntersectedNode();
         return GridPane.getColumnIndex(nodoClickeado.getParent());
+
     }
 
     public void limpiar() {
+
         this.getChildren().clear();
         for (int i = 0; i < 9; i++)
         	this.add(new Casilla(),i , 0);
+
     }
     
     public ControladorSelectorHerramienta controlador() {

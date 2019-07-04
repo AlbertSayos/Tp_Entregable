@@ -1,9 +1,5 @@
 package modelo.constructores;
 
-import modelo.herramientas.Golpe;
-import modelo.herramientas.Hacha;
-import modelo.herramientas.Pico;
-import modelo.herramientas.PicoFino;
 /*
 public class ConstructorHerramientas {
     public static Pico construirPicoDeMadera(){

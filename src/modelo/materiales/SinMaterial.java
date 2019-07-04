@@ -18,8 +18,5 @@ public class SinMaterial extends Material{
 		return 'v';
 	}
 
-	@Override
-	public void golpear(Golpe golpe) {
 
-	}
 }

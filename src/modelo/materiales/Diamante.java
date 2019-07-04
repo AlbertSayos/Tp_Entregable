@@ -1,7 +1,5 @@
 package modelo.materiales;
 
-import modelo.herramientas.Golpe;
-import modelo.excepciones.MaterialRotoException;
 import modelo.herramientas.*;
 
 public class Diamante extends Material{
@@ -27,9 +25,7 @@ public class Diamante extends Material{
 		return 'd';
 	}
 
-	@Override
-	public void golpear(Golpe golpe) {
 
-	}
+
 
 }
